@@ -46,11 +46,11 @@ export default class MenuBuilder {
 
   buildDarwinTemplate() {
     const subMenuAbout = {
-      label: 'eos-voter',
+      label: 'tc-wallet',
       submenu: [
         { role: 'about' },
         { type: 'separator' },
-        { label: 'Hide eos-voter', accelerator: 'Command+H', selector: 'hide:' },
+        { label: 'Hide tc-wallet', accelerator: 'Command+H', selector: 'hide:' },
         { label: 'Hide Others', accelerator: 'Command+Shift+H', selector: 'hideOtherApplications:' },
         { label: 'Show All', selector: 'unhideAllApplications:' },
         { type: 'separator' },

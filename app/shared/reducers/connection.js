@@ -1,7 +1,7 @@
 import * as types from '../actions/types';
 
 const initialState = {
-  chainId: 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',
+  chainId: 'daf2146039c351324f860e6ce10ab972ad504fc90a6e393bf439909eb86c4fb8',
   broadcast: true,
   expireInSeconds: 120,
   forceActionDataHex: false,

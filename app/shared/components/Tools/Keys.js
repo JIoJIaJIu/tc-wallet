@@ -6,7 +6,7 @@ import { Button, Header, Grid, Message, Segment } from 'semantic-ui-react';
 import ReactJson from 'react-json-view';
 
 const { clipboard } = require('electron');
-const { PrivateKey } = require('eosjs-ecc');
+const { PrivateKey } = require('tcjs-ecc');
 
 class ToolsKeys extends Component<Props> {
   state = { keys: [] }

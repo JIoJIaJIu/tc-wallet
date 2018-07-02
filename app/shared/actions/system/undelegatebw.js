@@ -34,8 +34,8 @@ export function undelegatebwParams(delegator, receiver, netAmount, cpuAmount) {
   return {
     from: delegator,
     receiver,
-    unstake_net_quantity: `${unstakeNetAmount.toFixed(4)} EOS`,
-    unstake_cpu_quantity: `${unstakeCpuAmount.toFixed(4)} EOS`,
+    unstake_net_quantity: `${unstakeNetAmount.toFixed(4)} TT`,
+    unstake_cpu_quantity: `${unstakeCpuAmount.toFixed(4)} TT`,
     transfer: 0
   };
 }

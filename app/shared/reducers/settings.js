@@ -1,16 +1,16 @@
 import * as types from '../actions/types';
 
 const initialState = {
-  // If the active session has accepted the EOS constitution
+  // If the active session has accepted the TT constitution
   acceptedConstitution: false,
   // The loaded account
   account: '',
   // Custom tokens the wallet should be tracking
-  customTokens: [],
+  customTokens: ["eosio.token:TT"],
   // Default language
   lang: 'en-US',
   // The node to connect to
-  node: '',
+  node: 'https://eost.travelchain.io',
   // Allows the UI to start with only a connected node
   skipImport: false,
   // Window State Management

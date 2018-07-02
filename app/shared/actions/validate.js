@@ -3,7 +3,7 @@ import * as types from './types';
 import * as chain from './chain';
 import eos from './helpers/eos';
 
-const ecc = require('eosjs-ecc');
+const ecc = require('tcjs-ecc');
 
 export function validateAccount(account) {
   return (dispatch: () => void, getState) => {
@@ -60,7 +60,7 @@ export function validateNode(node) {
     });
     // Ensure there's a value to test
     if (node || node.length !== 0) {
-      // Establish EOS connection
+      // Establish TT connection
       try {
         const {
           connection
@@ -120,7 +120,7 @@ export function validateKey(key) {
       });
     }
     try {
-      // Establish EOS connection
+      // Establish TT connection
       eos(connection).getAccount(settings.account).then((account) => {
         // Keys must resolve to one of these types of permissions
         const permissions = ['active', 'owner'];

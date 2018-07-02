@@ -48,7 +48,7 @@ export function getProducers(previous = false) {
       let tokensToProducersForVotes = false;
       const { contract } = globals;
       if (contract && contract['eosio.token']) {
-        const supply = parseFloat(contract['eosio.token'].EOS.supply);
+        const supply = parseFloat(contract['eosio.token'].TT.supply);
         // yearly inflation
         const inflation = 0.04879;
         // Tokens per year
@@ -63,7 +63,7 @@ export function getProducers(previous = false) {
         backupMinimumPercent = 100 / tokensToProducersForVotes;
       }
       const data = rows
-        .filter((p) => (p.producer_key !== 'EOS1111111111111111111111111111111114T1Anm'))
+        .filter((p) => (p.producer_key !== 'TTT1111111111111111111111111111111114T1Anm'))
         .map((producer) => {
           const votes = parseInt(producer.total_votes, 10);
           const percent = votes / current.total_producer_vote_weight;

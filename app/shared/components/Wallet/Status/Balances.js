@@ -46,10 +46,10 @@ class WalletStatusBalances extends Component<Props> {
 
     const rows = [
       (
-        <Table.Row key="EOS">
+        <Table.Row key="TT">
           <Table.Cell width={2}>
             <Header>
-              EOS
+              TT
               <Header.Subheader>
                 eosio.token
               </Header.Subheader>
@@ -60,11 +60,11 @@ class WalletStatusBalances extends Component<Props> {
               <Table.Body>
                 <Table.Row>
                   <Table.Cell width={4}>{t('wallet_status_liquid')}</Table.Cell>
-                  <Table.Cell>{(tokens.EOS) ? tokens.EOS.toFixed(4) : '0.0000'} EOS</Table.Cell>
+                  <Table.Cell>{(tokens.TT) ? tokens.TT.toFixed(4) : '0.0000'} TT</Table.Cell>
                 </Table.Row>
                 <Table.Row>
                   <Table.Cell>{t('wallet_status_resources_staked')}</Table.Cell>
-                  <Table.Cell>{totalStaked.toFixed(4)} EOS </Table.Cell>
+                  <Table.Cell>{totalStaked.toFixed(4)} TT </Table.Cell>
                 </Table.Row>
                 {(refundDate)
                   ? (
@@ -83,7 +83,7 @@ class WalletStatusBalances extends Component<Props> {
                           )
                           : false
                         }
-                        {totalBeingUnstaked.toFixed(4)} EOS (<TimeAgo date={refundDate} />)
+                        {totalBeingUnstaked.toFixed(4)} TT (<TimeAgo date={refundDate} />)
                       </Table.Cell>
                     </Table.Row>
                   )
@@ -91,7 +91,7 @@ class WalletStatusBalances extends Component<Props> {
                 }
                 <Table.Row>
                   <Table.Cell>{t('wallet_status_total_balance')}</Table.Cell>
-                  <Table.Cell>{totalTokens.toFixed(4)} EOS</Table.Cell>
+                  <Table.Cell>{totalTokens.toFixed(4)} TT</Table.Cell>
                 </Table.Row>
               </Table.Body>
             </Table>
@@ -101,7 +101,7 @@ class WalletStatusBalances extends Component<Props> {
     ];
     // Add rows for remaining tokens
     forEach(tokens, (amount, token) => {
-      if (token === 'EOS') return;
+      if (token === 'TT') return;
       rows.push((
         <Table.Row key={token}>
           <Table.Cell width={5}>

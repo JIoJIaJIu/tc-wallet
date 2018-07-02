@@ -1,6 +1,6 @@
 {
   "welcome_created_by": "创建于",
-  "welcome_instructions_1": "开始时，eos-vote需要连接到EOS API节点",
+  "welcome_instructions_1": "开始时，tc-wallet需要连接到TC API节点",
   "welcome_instructions_2": "输入您想要连接的节点",
   "welcome_instructions_3": "Enter the public key or account name.",
   "welcome_instructions_3_cold": "Enter the account name to use.",
@@ -11,7 +11,7 @@
   "welcome_more_servers_2": "点击此处查看选项列表。",
   "welcome_connect_server": "Connect to Server",
   "welcome_key_compare_title": "Hint: Private Keys",
-  "welcome_key_compare_content": "All EOS keys start with the number 5 and are 51 characters long.",
+  "welcome_key_compare_content": "All TravelChain keys start with the number 5 and are 51 characters long.",
   "welcome_stage": "Stage",
   "welcome_stage_connection": "Connection",
   "welcome_stage_coldwallet": "Cold Wallet",

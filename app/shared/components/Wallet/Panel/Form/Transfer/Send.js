@@ -17,7 +17,7 @@ class WalletPanelFormTransfer extends Component<Props> {
       from: props.settings.account,
       memo: '',
       quantity: '',
-      symbol: 'EOS',
+      symbol: 'TT',
       to: '',
       waiting: false,
       waitingStarted: 0
@@ -115,7 +115,7 @@ class WalletPanelFormTransfer extends Component<Props> {
     } = this.state;
 
     const balance = balances[settings.account];
-    const asset = 'EOS';
+    const asset = 'TT';
     const error = system.TRANSFER_LAST_ERROR;
     const validTransfer = (quantity <= 0 || !to || !from);
 

@@ -1,6 +1,6 @@
 {
-  "name": "eos-voter",
-  "productName": "eos-voter",
+  "name": "tc-wallet",
+  "productName": "tc-wallet",
   "version": "0.2.2",
   "description": "",
   "scripts": {
@@ -29,7 +29,7 @@
   },
   "browserslist": "electron 1.6",
   "build": {
-    "productName": "eos-voter",
+    "productName": "tc-wallet",
     "appId": "com.greymass.eos-voter",
     "artifactName": "${os}-${productName}-${version}-${arch}.${ext}",
     "asar": true,
@@ -80,15 +80,15 @@
       "oneClick": false,
       "createDesktopShortcut": "always",
       "createStartMenuShortcut": true,
-      "shortcutName": "eos-voter"
+      "shortcutName": "tc-wallet"
     },
     "linux": {
       "category": "Network",
       "desktop": {
-        "Name": "eos-voter",
-        "GenericName": "EOS Voting Client + Wallet",
-        "X-GNOME-FullName": "eos-voter",
-        "Comment": "A simple voting interface and wallet for EOS accounts.",
+        "Name": "tc-wallet",
+        "GenericName": "TravelChain Voting Client + Wallet",
+        "X-GNOME-FullName": "tc-wallet",
+        "Comment": "A simple voting interface and wallet for TravelChain accounts.",
         "Type": "Application",
         "Terminal": "false",
         "StartupNotify": "false",
@@ -116,23 +116,24 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/greymass/eos-voter.git"
+    "url": "git+https://github.com/TravelChain/tc-wallet.git"
   },
   "author": {
-    "name": "Greymass",
-    "email": "hello@greymass.com",
-    "url": "https://github.com/greymass"
+    "name": "DarkSun",
+    "email": "dacom.dark.sun@gmail.com",
+    "url": "https://dacom.io"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/greymass/eos-voter/issues"
+    "url": "https://github.com/TravelChain/tc-wallet/issues"
   },
   "keywords": [
     "eos",
+    "travelchain",
     "voting",
     "wallet"
   ],
-  "homepage": "https://github.com/greymass/eos-voter#readme",
+  "homepage": "https://github.com/TravelChain/tc-wallet#readme",
   "jest": {
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/internals/mocks/fileMock.js",
@@ -235,7 +236,7 @@
     "decimal.js": "^10.0.1",
     "electron-store": "^2.0.0",
     "electron-updater": "^2.21.10",
-    "eosjs": "15.0.0",
+    "tcjs": "15.0.4",
     "history": "^4.7.2",
     "i": "^0.3.6",
     "i18next": "^11.3.2",

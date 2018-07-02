@@ -13,7 +13,7 @@ export default class FormFieldToken extends Component<Props> {
     };
   }
   onChange = debounce((e, { name, value }) => {
-    const asset = 'EOS';
+    const asset = 'TT';
     const parsed = (value > 0) ? `${new Decimal(value).toFixed(4)} ${asset}` : `0.0000 ${asset}`;
     this.setState({
       value: parsed,

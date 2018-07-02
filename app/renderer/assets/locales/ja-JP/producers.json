@@ -33,7 +33,7 @@
   "producer_voter_preview_transaction_successful_title": "投票が正常に送信されました",
   "producer_voter_preview_transaction_successful_message": "ブロックチェーンに記録されました。トランザクション情報は以下で確認できます。",
   "producer_voter_preview_close": "閉じる",
-  "producer_welcome_header": "eos-voterへようこそ",
+  "producer_welcome_header": "tc-walletへようこそ",
   "producer_welcome_subheader": "",
   "producer_welcome_p1": "",
   "producer_welcome_p2": "",

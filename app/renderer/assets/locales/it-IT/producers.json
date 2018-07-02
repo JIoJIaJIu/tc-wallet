@@ -1,6 +1,6 @@
 {
   "block_producer": "Block Producer",
-  "block_producer_eos_staked": "EOS impegnati in totale",
+  "block_producer_eos_staked": "TT impegnati in totale",
   "block_producer_last_produced": "Ultimo blocco",
   "block_producer_last_production_status": "Stato",
   "block_producer_last_active": "Ultimo attivo",
@@ -33,7 +33,7 @@
   "producer_voter_preview_transaction_successful_title": "Voti inviati con successo",
   "producer_voter_preview_transaction_successful_message": "Questa azione è stata registrata sulla blockchain. Le informazioni sulla transazione sono disponibili di seguito.",
   "producer_voter_preview_close": "Chiudi",
-  "producer_welcome_header": "Benvenuto in eos-voter",
+  "producer_welcome_header": "Benvenuto in tc-wallet",
   "producer_welcome_subheader": "",
   "producer_welcome_p1": "",
   "producer_welcome_p2": "",

@@ -9,7 +9,7 @@ export default class FormFieldMultiToken extends Component<Props> {
     super(props);
     const [quantity, asset] = props.value.split(' ');
     this.state = {
-      asset: asset || 'EOS',
+      asset: asset || 'TT',
       quantity
     };
   }
@@ -47,7 +47,7 @@ export default class FormFieldMultiToken extends Component<Props> {
           placeholder="0.0000"
         >
           <Dropdown
-            defaultValue={this.state.asset || 'EOS'}
+            defaultValue={this.state.asset || 'TT'}
             name="asset"
             onChange={this.onChange}
             options={options}

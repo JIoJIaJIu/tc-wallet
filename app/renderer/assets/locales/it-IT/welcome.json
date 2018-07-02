@@ -1,6 +1,6 @@
 {
   "welcome_created_by": "Creato da",
-  "welcome_instructions_1": "Per iniziare, eos-voter deve connettersi a un nodo API EOS. ",
+  "welcome_instructions_1": "Per iniziare, tc-wallet deve connettersi a un nodo API TravelChain. ",
   "welcome_instructions_2": "Inserisci il nodo a cui desideri connetterti. ",
   "welcome_instructions_3": "Enter the public key or account name.",
   "welcome_instructions_3_cold": "Enter the account name to use.",
@@ -11,7 +11,7 @@
   "welcome_more_servers_2": "Clicca qui per visualizzare un elenco di opzioni. ",
   "welcome_connect_server": "Connect to Server",
   "welcome_key_compare_title": "Hint: Private Keys",
-  "welcome_key_compare_content": "All EOS keys start with the number 5 and are 51 characters long.",
+  "welcome_key_compare_content": "All TravelChain keys start with the number 5 and are 51 characters long.",
   "welcome_stage": "Stage",
   "welcome_stage_connection": "Connection",
   "welcome_stage_coldwallet": "Cold Wallet",

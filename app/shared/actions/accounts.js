@@ -70,8 +70,8 @@ export function getAccount(account = '') {
         const modified = results;
         if (!modified.self_delegated_bandwidth) {
           modified.self_delegated_bandwidth = {
-            cpu_weight: '0.0000 EOS',
-            net_weight: '0.0000 EOS'
+            cpu_weight: '0.0000 TT',
+            net_weight: '0.0000 TT'
           };
         }
         // Dispatch the results of the account itself
@@ -131,7 +131,7 @@ export function getCurrencyBalance(account) {
     } = getState();
     if (account && (settings.node || settings.node.length !== 0)) {
       const { customTokens } = settings;
-      let selectedTokens = ['eosio.token:EOS'];
+      let selectedTokens = ['eosio.token:TT'];
       if (customTokens && customTokens.length > 0) {
         selectedTokens = [...customTokens, ...selectedTokens];
       }

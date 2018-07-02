@@ -1,6 +1,6 @@
 {
   "welcome_created_by": "Создано",
-  "welcome_instructions_1": "Для начала, приложение должно подключиться к одному из узлов сети EOS",
+  "welcome_instructions_1": "Для начала, приложение должно подключиться к одному из узлов сети TravelChain",
   "welcome_instructions_2": "Введите узел сети, к которому вы хотите подключиться.",
   "welcome_instructions_3": "Введите открытый ключ или имя учетной записи.",
   "welcome_instructions_3_cold": "Enter the account name to use.",
@@ -11,7 +11,7 @@
   "welcome_more_servers_2": "Нажмите здесь, чтобы просмотреть список вариантов.",
   "welcome_connect_server": "Подключение к серверу",
   "welcome_key_compare_title": "Подсказка: Закрытые ключи",
-  "welcome_key_compare_content": "Все ключи EOS начинаются с номера 5 и имеют длину 51 символ.",
+  "welcome_key_compare_content": "Все ключи TC начинаются с номера 5 и имеют длину 51 символ.",
   "welcome_stage": "Этап",
   "welcome_stage_connection": "Подключение",
   "welcome_stage_coldwallet": "Cold Wallet",
