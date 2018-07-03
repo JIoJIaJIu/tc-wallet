@@ -10,7 +10,7 @@ const initialState = {
   // Default language
   lang: 'en-US',
   // The node to connect to
-  node: 'https://eost.travelchain.io',
+  node: '',
   // Allows the UI to start with only a connected node
   skipImport: false,
   // Window State Management

@@ -1,13 +1,13 @@
 {
-  "name": "eos-voter",
-  "productName": "eos-voter",
+  "name": "tc-wallet",
+  "productName": "tc-wallet",
   "version": "0.2.2",
   "description": "",
   "main": "./main.prod.js",
   "author": {
-    "name": "Greymass",
-    "email": "hello@greymass.com",
-    "url": "https://github.com/greymass"
+    "name": "DarkSun",
+    "email": "dacom.dark.sun@gmail.com",
+    "url": "https://dacom.io"
   },
   "scripts": {
     "electron-rebuild": "node -r babel-register ../internals/scripts/ElectronRebuild.js",

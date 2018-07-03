@@ -236,7 +236,7 @@
     "decimal.js": "^10.0.1",
     "electron-store": "^2.0.0",
     "electron-updater": "^2.21.10",
-    "tcjs": "15.0.4",
+    "tcjs": "^15.0.7",
     "history": "^4.7.2",
     "i": "^0.3.6",
     "i18next": "^11.3.2",
