@@ -40,6 +40,19 @@ export default class BasicMenu extends Component<Props> {
                 )
                 : false
               }
+               {(settings.walletMode !== 'cold')
+                ? (
+                  <Menu.Item
+                    name="protocoll"
+                    icon="check square"
+                    content={t('Protocol')}
+                    active={activeItem === 'protocoll'}
+                    onClick={handleItemClick}
+                  />
+                )
+                : false
+              }
+
               {(settings.account)
                 ? (
                   <Menu.Item
@@ -75,14 +88,7 @@ export default class BasicMenu extends Component<Props> {
                   validate={validate}
                   wallet={wallet}
                 />
-                <Menu.Item
-                  name="about"
-                  position="right"
-                  active={activeItem === 'about'}
-                  onClick={handleItemClick}
-                >
-                  <img alt="Greymass" src={logo} />
-                </Menu.Item>
+               
               </Menu.Menu>
             </Menu>
           )
