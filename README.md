@@ -73,13 +73,3 @@ cd eos-voter
 yarn install
 yarn dev
 ```
-
-shasum -b -a 512 mac-eos-voter-0.2.2.zip
-355e7d18f462d7586af58acdfa7aff4c363e78d78d76a3c2cec9e3525e1c75a79ad988122f9b12337bcc1dfa78dfddec1deb3973aeb7fa5472cb3c036a581e06 *mac-eos-voter-0.2.2.zip
-
-shasum -b -a 512 win-eos-voter-0.2.2.exe
-56afe1adfa4dfa1b753db6f87b71f6b929e72003b4db50504e97b67990da067c4157c99062297522c6af067af921106f73375d4974c8e565e44816feabebff78 *win-eos-voter-0.2.2.exe
-
-shasum -b -a 512 mac-eos-voter-0.2.2.dmg
-56d17e0561c9ce9d06f9d1d159f5a77889d4ebb08f20e675823d3529c97c82b8108159f5144e171665c793d7ea7dc65e5b2c4bfe195ec0ae10866608855714b3 *mac-eos-voter-0.2.2.dmg
-```
