@@ -38,6 +38,7 @@
   "wallet_panel_form_node": "URL-адрес узла сети для управления кошельком",
   "wallet_panel_form_key": "WIF/Закрытый ключ",
   "wallet_panel_form_encrypt_wallet": "Сохранить и зашифровать локальный кошелек паролем?",
+  "url_input_placeholder": "Выбрать узел", 
   "wallet_panel_form_account": "Имя учётной записи",
   "wallet_panel_password_confirm_button": "Сохранить пароль",
   "wallet_panel_password_confirm_title": "Подтвердить пароль",

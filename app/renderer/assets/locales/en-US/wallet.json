@@ -36,6 +36,7 @@
   "wallet_panel_form_will_save": "The account name and private key will be encrypted and saved in the application. The password will be required to unlock the key for usage.",
   "wallet_panel_form_not_saved": "The private key will not be saved within the application - it will have to be re-entered each time the application is opened.",
   "wallet_panel_form_node": "Wallet API URL",
+  "url_input_placeholder": "Choise API node",
   "wallet_panel_form_key": "WIF/Private Key",
   "wallet_panel_form_encrypt_wallet": "Save/encrypt local wallet with password?",
   "wallet_panel_form_account": "Account Name",

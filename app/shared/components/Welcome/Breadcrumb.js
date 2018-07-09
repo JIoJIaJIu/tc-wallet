@@ -12,62 +12,63 @@ class WelcomeBreadcrumb extends Component<Props> {
       walletMode
     } = this.props;
     return (
-      <Breadcrumb size="large">
-        {(walletMode !== 'cold')
-          ? [(
-            <Breadcrumb.Section
-              active={(stage === 0)}
-              key="connection_stage"
-              onClick={(stage > 0) ? () => onStageSelect(0) : null}
-            >
-              {t('welcome_stage_connection')}
-            </Breadcrumb.Section>
-          ), (
-            <Breadcrumb.Divider key="divider" icon="right angle" />
-          )]
-          : [(
-            <Breadcrumb.Section
-              key="connection_stage_cold"
-            >
-              {t('welcome_stage_coldwallet')}
-            </Breadcrumb.Section>
-          ), (
-            <Breadcrumb.Divider key="divider" icon="right angle" />
-          )]
-        }
-        <Breadcrumb.Section
-          active={(stage === 1)}
-          onClick={(stage > 1) ? () => onStageSelect(1) : null}
-        >
-          {t('welcome_stage_account')}
-        </Breadcrumb.Section>
-        <Breadcrumb.Divider icon="right angle" />
-        {(walletMode !== 'watch')
-          ? (
-            <React.Fragment>
-              <Breadcrumb.Section
-                active={(stage === 2)}
-                onClick={(stage > 2) ? () => onStageSelect(2) : null}
-              >
-                {t('welcome_stage_authorize')}
-              </Breadcrumb.Section>
-              <Breadcrumb.Divider icon="right angle" />
-              <Breadcrumb.Section
-                active={(stage === 3)}
-              >
-                {t('welcome_stage_wallet')}
-              </Breadcrumb.Section>
-            </React.Fragment>
-          )
-          : (
-            <Breadcrumb.Section
-              active={(stage === 2)}
-            >
-              {t('welcome_stage_watchwallet')}
-            </Breadcrumb.Section>
-          )
-        }
-      </Breadcrumb>
+      // <Breadcrumb size="large">
+      //   {(walletMode !== 'cold')
+      //     ? [(
+      //       <Breadcrumb.Section
+      //         active={(stage === 0)}
+      //         key="connection_stage"
+      //         onClick={(stage > 0) ? () => onStageSelect(0) : null}
+      //       >
+      //         {t('welcome_stage_connection')}
+      //       </Breadcrumb.Section>
+      //     ), (
+      //       <Breadcrumb.Divider key="divider" icon="right angle" />
+      //     )]
+      //     : [(
+      //       <Breadcrumb.Section
+      //         key="connection_stage_cold"
+      //       >
+      //         {t('welcome_stage_coldwallet')}
+      //       </Breadcrumb.Section>
+      //     ), (
+      //       <Breadcrumb.Divider key="divider" icon="right angle" />
+      //     )]
+      //   }
+      //   <Breadcrumb.Section
+      //     active={(stage === 1)}
+      //     onClick={(stage > 1) ? () => onStageSelect(1) : null}
+      //   >
+      //     {t('welcome_stage_account')}
+      //   </Breadcrumb.Section>
+      //   <Breadcrumb.Divider icon="right angle" />
+      //   {(walletMode !== 'watch')
+      //     ? (
+      //       <React.Fragment>
+      //         <Breadcrumb.Section
+      //           active={(stage === 2)}
+      //           onClick={(stage > 2) ? () => onStageSelect(2) : null}
+      //         >
+      //           {t('welcome_stage_authorize')}
+      //         </Breadcrumb.Section>
+      //         <Breadcrumb.Divider icon="right angle" />
+      //         <Breadcrumb.Section
+      //           active={(stage === 3)}
+      //         >
+      //           {t('welcome_stage_wallet')}
+      //         </Breadcrumb.Section>
+      //       </React.Fragment>
+      //     )
+      //     : (
+      //       <Breadcrumb.Section
+      //         active={(stage === 2)}
+      //       >
+      //         {t('welcome_stage_watchwallet')}
+      //       </Breadcrumb.Section>
+      //     )
+      //   }
+      // </Breadcrumb>
+      ''
     );
   }
 }

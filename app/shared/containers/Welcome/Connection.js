@@ -193,7 +193,7 @@ class WelcomeConnectionContainer extends Component<Props> {
           loading={(validate.NODE === 'PENDING')}
           name="node"
           onChange={this.onChange}
-          placeholder="https://..."
+          placeholder={t('wallet_panel_form_node')}
           defaultValue={node}
         />
         {message}

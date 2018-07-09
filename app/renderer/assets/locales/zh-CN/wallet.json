@@ -38,6 +38,7 @@
   "wallet_panel_form_node": "钱包API URL",
   "wallet_panel_form_key": "WIF /私钥",
   "wallet_panel_form_encrypt_wallet": "用密码保存/加密本地钱包？",
+  "url_input_placeholder": "Choise API node",
   "wallet_panel_form_account": "帐户名称",
   "wallet_panel_password_confirm_button": "保存帐户",
   "wallet_panel_password_confirm_title": "确认密码",

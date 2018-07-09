@@ -37,6 +37,7 @@
   "wallet_panel_form_not_saved": "La private key non verrà salvata all'interno dell'applicazione - dovrà essere reinserita ogni volta che si apre l'applicazione. ",
   "wallet_panel_form_node": "Wallet API URL",
   "wallet_panel_form_key": "WIF/Private Key",
+  "url_input_placeholder": "Choise API node", 
   "wallet_panel_form_encrypt_wallet": "Salva / cripta il portafoglio locale con password? ",
   "wallet_panel_form_account": "Nome dell'Account",
   "wallet_panel_password_confirm_button": "Salva Account",

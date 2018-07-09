@@ -37,6 +37,7 @@
   "wallet_panel_form_not_saved": "秘密鍵はアプリケーションに保存されません。アプリケーションを開くたびに再入力する必要があります。",
   "wallet_panel_form_node": "ウォレットAPIのURL",
   "wallet_panel_form_key": "WIF/秘密鍵",
+  "url_input_placeholder": "Choise API node", 
   "wallet_panel_form_encrypt_wallet": "パスワードでローカルウォレットを暗号化し保存しますか？",
   "wallet_panel_form_account": "アカウント名",
   "wallet_panel_password_confirm_button": "アカウントを保存",

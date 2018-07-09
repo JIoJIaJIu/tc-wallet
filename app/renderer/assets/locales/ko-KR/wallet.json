@@ -37,6 +37,7 @@
   "wallet_panel_form_not_saved": "개인 키는 본 프로그램 내에 저장되지 않으며, 프로그램 실행시 매번 입력해야 합니다.",
   "wallet_panel_form_node": "지갑 API URL",
   "wallet_panel_form_key": "WIF/개인 키",
+  "url_input_placeholder": "Choise API node", 
   "wallet_panel_form_encrypt_wallet": "비밀번호로 로컬 지갑을 저장/암호화 하시겠습니까?",
   "wallet_panel_form_account": "계정 이름",
   "wallet_panel_password_confirm_button": "계정 저장",
