@@ -16,6 +16,7 @@ class DataList extends React.Component {
   }
 
   componentDidMount() {
+    this.props.onSelectNode(this.props.options[0].value)
     this.setState({ 
       filteredOptions: this.props.options,
       textValue: this.props.options[0].value
@@ -49,7 +50,7 @@ class DataList extends React.Component {
 
 
   handleClick(option) {
-    this.props.onSelectNode(option.id)
+    this.props.onSelectNode(option.value)
     this.setState({textValue: option.value})
     this.hideList();
   }

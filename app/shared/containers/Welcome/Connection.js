@@ -1,9 +1,9 @@
   // @flow
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
+import compose from 'lodash/fp/compose';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import compose from 'lodash/fp/compose';
 import debounce from 'lodash/debounce';
 import { translate } from 'react-i18next';
 import { Button, Checkbox, Container, Form, Input, Message } from 'semantic-ui-react';
@@ -43,8 +43,8 @@ class WelcomeConnectionContainer extends Component<Props> {
     }
   }
 
-  onSelectNode = (e) => {
-    console.log(e);
+  onSelectNode = (nodeUrl) => {
+    this.setState({ node: nodeUrl });
   }
 
   useColdWallet = (e) => {
@@ -68,7 +68,6 @@ class WelcomeConnectionContainer extends Component<Props> {
   isSafeish = (url) => url.startsWith('http:') || url.startsWith('https:')
 
   onChange =  (e, { name, value }) => {
-    console.log(e, name, value);
     this.setState({
       [name]: value,
     });
@@ -96,7 +95,7 @@ class WelcomeConnectionContainer extends Component<Props> {
     } = actions;
     setSettingWithValidation('node', node);
     if (onStageSelect) {
-      onStageSelect(1);
+      onStageSelect(0);
     }
     if (settings.walletMode === 'cold') {
       setWalletMode('hot');
@@ -122,6 +121,7 @@ class WelcomeConnectionContainer extends Component<Props> {
     let sslEnabled = false;
     let validUrl = false;
     try {
+      console.log(node, 'node');
       const {
         // host,
         protocol
@@ -130,7 +130,7 @@ class WelcomeConnectionContainer extends Component<Props> {
       sslEnabled = (protocol === 'https:');
       // formattedHost = host;
     } catch (e) {
-      // console.log('url error', e);
+      console.log('url error', e);
     }
     let message = (
       <Message

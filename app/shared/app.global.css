@@ -123,4 +123,11 @@ body {
   position: relative
 }
 
+.login-page__controls-wrapper {
+  height: 20vh;
+  display: flex !important;
+  justify-content: space-around;
+  align-items: center;
+}
+
 /*# sourceMappingURL=index.css.map */

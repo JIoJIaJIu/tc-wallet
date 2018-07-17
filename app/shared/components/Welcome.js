@@ -6,6 +6,7 @@ import { translate } from 'react-i18next';
 import eos from '../../renderer/assets/images/eos.png';
 
 import WelcomeAccount from './Welcome/Account';
+import Login from './Welcome/Login';
 import WelcomeBreadcrumb from './Welcome/Breadcrumb';
 import WelcomeConnection from './Welcome/Connection';
 import WelcomeKey from './Welcome/Key';
@@ -84,13 +85,17 @@ class Welcome extends Component<Props> {
     if (stageSelect !== false) {
       stage = stageSelect;
     }
+
     let stageElement = <WelcomeConnection onStageSelect={this.onStageSelect} stage={stage} />;
-    if (stage >= 1 && (settings.walletMode === 'cold' || validate.NODE === 'SUCCESS')) {
-      stageElement = <WelcomeAccount onStageSelect={this.onStageSelect} stage={stage} />;
-      if (stage >= 2 && (settings.walletMode === 'cold' || validate.ACCOUNT === 'SUCCESS')) {
-        stageElement = <WelcomeKey onStageSelect={this.onStageSelect} stage={stage} />;
-        if (stage === 3 && (settings.walletMode === 'cold' || validate.KEY === 'SUCCESS')) {
-          stageElement = <WelcomeWallet onStageSelect={this.onStageSelect} stage={stage} />;
+    if (stage >= 0 && validate.NODE === 'SUCCESS') {
+      stageElement = <Login onStageSelect={this.onStageSelect} />;
+      if (stage >= 1 && (settings.walletMode === 'cold' || validate.NODE === 'SUCCESS')) {
+        stageElement = <WelcomeAccount onStageSelect={this.onStageSelect} stage={stage} />;
+        if (stage >= 2 && (settings.walletMode === 'cold' || validate.ACCOUNT === 'SUCCESS')) {
+          stageElement = <WelcomeKey onStageSelect={this.onStageSelect} stage={stage} />;
+          if (stage === 3 && (settings.walletMode === 'cold' || validate.KEY === 'SUCCESS')) {
+            stageElement = <WelcomeWallet onStageSelect={this.onStageSelect} stage={stage} />;
+          }
         }
       }
     }
