@@ -103,4 +103,24 @@ body {
   position: relative;
   width: 100%; }
 
+.datalist-node-option {
+  border-bottom: 1px solid rgba(34,36,38,.15); 
+  border-left: 1px solid rgba(34,36,38,.15); 
+  border-right: 1px solid rgba(34,36,38,.15); 
+  border-radius: 2px; 
+  background-color: lightgoldenrodyellow;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.datalist__node-wrapper {
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+}
+
+.datalist__node {
+  position: relative
+}
+
 /*# sourceMappingURL=index.css.map */

@@ -1,4 +1,4 @@
-// @flow
+  // @flow
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -12,6 +12,8 @@ import * as AccountsActions from '../../actions/accounts';
 import * as SettingsActions from '../../actions/settings';
 import * as ValidateActions from '../../actions/validate';
 import * as WalletActions from '../../actions/wallet';
+
+import DataList from '../../components/Global/Form/Field/Datalist';
 
 const { shell } = require('electron');
 
@@ -41,6 +43,10 @@ class WelcomeConnectionContainer extends Component<Props> {
     }
   }
 
+  onSelectNode = (e) => {
+    console.log(e);
+  }
+
   useColdWallet = (e) => {
     const {
       actions,
@@ -62,6 +68,7 @@ class WelcomeConnectionContainer extends Component<Props> {
   isSafeish = (url) => url.startsWith('http:') || url.startsWith('https:')
 
   onChange =  (e, { name, value }) => {
+    console.log(e, name, value);
     this.setState({
       [name]: value,
     });
@@ -182,48 +189,52 @@ class WelcomeConnectionContainer extends Component<Props> {
     }
     // safeish true and ssl or non-ssl confirmed
     const disabled = !(this.isSafeish(node) && (sslConfirm || sslEnabled));
+    const options = [{ id: 1, value: 'https://eost.travelchain.io/v1/wallet' }];
     return (
-      <Form>
-        <Form.Field
-          autoFocus
-          control={Input}
-          fluid
-          icon={(validate.NODE === 'SUCCESS') ? 'checkmark' : 'x'}
-          label={t('wallet_panel_form_node')}
-          loading={(validate.NODE === 'PENDING')}
-          name="node"
-          onChange={this.onChange}
-          placeholder={t('wallet_panel_form_node')}
-          defaultValue={node}
-        />
-        {message}
-        {checkbox}
-        <Container>
-          <Button
-            content={t('welcome:welcome_connect_server')}
-            disabled={disabled}
-            icon="exchange"
-            floated={(!settings.walletInit) ? 'right' : null}
-            fluid={(settings.walletInit)}
-            onClick={this.onConnect}
-            primary
-            size="small"
-            style={{ marginTop: '1em' }}
+      <div>
+        <Form>
+          <Form.Field
+            autoFocus
+            control={DataList}
+            options={options}
+            fluid
+            icon={(validate.NODE === 'SUCCESS') ? 'checkmark' : 'x'}
+            label={t('wallet_panel_form_node')}
+            loading={(validate.NODE === 'PENDING')}
+            name="node"
+            onChange={this.onChange}
+            placeholder={t('wallet_panel_form_node')}
+            onSelectNode={this.onSelectNode.bind(this)}
           />
-          {(!settings.walletInit)
-            ? (
-              <Button
-                content={t('welcome:welcome_use_coldwallet')}
-                icon="snowflake"
-                onClick={this.useColdWallet}
-                size="small"
-                style={{ marginTop: '1em' }}
-              />
-            )
-            : false
-          }
-        </Container>
-      </Form>
+          {message}
+          {checkbox}
+          <Container>
+            <Button
+              content={t('welcome:welcome_connect_server')}
+              disabled={disabled}
+              icon="exchange"
+              floated={(!settings.walletInit) ? 'right' : null}
+              fluid={(settings.walletInit)}
+              onClick={this.onConnect}
+              primary
+              size="small"
+              style={{ marginTop: '1em' }}
+            />
+            {(!settings.walletInit)
+              ? (
+                <Button
+                  content={t('welcome:welcome_use_coldwallet')}
+                  icon="snowflake"
+                  onClick={this.useColdWallet}
+                  size="small"
+                  style={{ marginTop: '1em' }}
+                />
+              )
+              : false
+            }
+          </Container>
+        </Form>
+      </div>
     );
   }
 }
