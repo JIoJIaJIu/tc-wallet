@@ -124,10 +124,13 @@ body {
 }
 
 .login-page__controls-wrapper {
-  height: 20vh;
-  display: flex !important;
+  display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+.registration-page__info-message {
+  border-radius: 0px !important;
 }
 
 /*# sourceMappingURL=index.css.map */

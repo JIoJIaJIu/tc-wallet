@@ -8136,7 +8136,7 @@ prompts@^0.1.9:
     clorox "^1.0.3"
     sisteransi "^0.1.1"
 
-prop-types@^15.5.4, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2:
+prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
   dependencies:
@@ -8437,6 +8437,12 @@ react-test-renderer@^16.0.0-0, react-test-renderer@^16.4.0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
     react-is "^16.4.1"
+
+react-text-mask@^5.4.2:
+  version "5.4.2"
+  resolved "https://registry.yarnpkg.com/react-text-mask/-/react-text-mask-5.4.2.tgz#6c9ecce97d354698557d14699963081f9621e997"
+  dependencies:
+    prop-types "^15.5.6"
 
 react-textarea-autosize@^6.1.0:
   version "6.1.0"

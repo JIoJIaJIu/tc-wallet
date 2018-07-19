@@ -11,6 +11,7 @@ import WelcomeBreadcrumb from './Welcome/Breadcrumb';
 import WelcomeConnection from './Welcome/Connection';
 import WelcomeKey from './Welcome/Key';
 import WelcomeWallet from './Welcome/Wallet';
+import Registration from './Welcome/Registration';
 
 const { shell } = require('electron');
 
@@ -73,14 +74,14 @@ class Welcome extends Component<Props> {
       (validate.NODE === 'SUCCESS' && validate.ACCOUNT === 'SUCCESS' && validate.KEY === 'SUCCESS')
       || (settings.walletMode === 'cold' && settings.account && keys.key)
     ) {
-      stage = 3;
+      stage = 4;
     } else if (
       (validate.NODE === 'SUCCESS' && validate.ACCOUNT === 'SUCCESS')
       || (settings.walletMode === 'cold' && settings.account)
     ) {
-      stage = 2;
+      stage = 3;
     } else if (validate.NODE === 'SUCCESS' || settings.walletMode === 'cold') {
-      stage = 1;
+      stage = 2;
     }
     if (stageSelect !== false) {
       stage = stageSelect;
@@ -89,12 +90,15 @@ class Welcome extends Component<Props> {
     let stageElement = <WelcomeConnection onStageSelect={this.onStageSelect} stage={stage} />;
     if (stage >= 0 && validate.NODE === 'SUCCESS') {
       stageElement = <Login onStageSelect={this.onStageSelect} />;
-      if (stage >= 1 && (settings.walletMode === 'cold' || validate.NODE === 'SUCCESS')) {
-        stageElement = <WelcomeAccount onStageSelect={this.onStageSelect} stage={stage} />;
-        if (stage >= 2 && (settings.walletMode === 'cold' || validate.ACCOUNT === 'SUCCESS')) {
-          stageElement = <WelcomeKey onStageSelect={this.onStageSelect} stage={stage} />;
-          if (stage === 3 && (settings.walletMode === 'cold' || validate.KEY === 'SUCCESS')) {
-            stageElement = <WelcomeWallet onStageSelect={this.onStageSelect} stage={stage} />;
+      if (stage >= 1 && validate.NODE === 'SUCCESS') {
+        stageElement = <Registration onStageSelect={this.onStageSelect} />;
+        if (stage >= 2 && (settings.walletMode === 'cold' || validate.NODE === 'SUCCESS')) {
+          stageElement = <WelcomeAccount onStageSelect={this.onStageSelect} stage={stage} />;
+          if (stage >= 3 && (settings.walletMode === 'cold' || validate.ACCOUNT === 'SUCCESS')) {
+            stageElement = <WelcomeKey onStageSelect={this.onStageSelect} stage={stage} />;
+            if (stage === 4 && (settings.walletMode === 'cold' || validate.KEY === 'SUCCESS')) {
+              stageElement = <WelcomeWallet onStageSelect={this.onStageSelect} stage={stage} />;
+            }
           }
         }
       }

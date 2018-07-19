@@ -58,7 +58,7 @@ class WelcomeConnectionContainer extends Component<Props> {
     // Immediately set the wallet into cold storage mode
     setWalletMode('cold');
     // Move to account stage
-    onStageSelect(1);
+    onStageSelect(2);
     e.preventDefault();
     return false;
   }

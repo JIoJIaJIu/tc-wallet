@@ -5,14 +5,18 @@ import { translate } from 'react-i18next';
 class LoginPage extends Component<Props> {
   onLogin = () => {
     const { onStageSelect } = this.props;
-    const ACCOUNT_PAGE = 1;
+    const ACCOUNT_PAGE = 2;
     if (onStageSelect) {
       onStageSelect(ACCOUNT_PAGE);
     }
   }
 
   onRegister = () => {
-    console.log('register');
+    const { onStageSelect } = this.props;
+    const REGISTRATION_PAGE = 1;
+    if (onStageSelect) {
+      onStageSelect(REGISTRATION_PAGE);
+    }
   }
 
   render() {

@@ -64,7 +64,7 @@ class WelcomeKeyContainer extends Component<Props> {
     switch (settings.walletMode) {
       case 'cold': {
         if (ecc.isValidPrivate(key) && onStageSelect) {
-          onStageSelect(3);
+          onStageSelect(4);
         }
         break;
       }
@@ -77,7 +77,7 @@ class WelcomeKeyContainer extends Component<Props> {
         // Validate against account
         validateKey(key, settings);
         if (onStageSelect) {
-          onStageSelect(3);
+          onStageSelect(4);
         }
         break;
       }
@@ -291,7 +291,7 @@ class WelcomeKeyContainer extends Component<Props> {
           <Button
             content={t('back')}
             icon="arrow left"
-            onClick={() => onStageSelect(1)}
+            onClick={() => onStageSelect(2)}
             size="small"
             style={{ marginTop: '1em' }}
           />
