@@ -3,6 +3,7 @@ import MaskedInput from 'react-text-mask';
 import { Button, Container, Segment, Message, Image, Input, Form } from 'semantic-ui-react';
 import { translate } from 'react-i18next';
 import logo from '../../../renderer/basic/tc.png';
+import axios from 'axios';
 
 class RegistrationPage extends Component<Props> {
   constructor() {
@@ -18,8 +19,45 @@ class RegistrationPage extends Component<Props> {
     // const { isValid }
   }
 
-  handleInput = ({ target: { value } }) => {
-    console.log(value);
+  handleInput = async ({ target: { value } }) => {
+    try {
+      const response = await axios.get('http://eost.travelchain.io/v1/chain/get_account', {
+        params: {
+          account_name: 'eosio'
+        }
+      });
+      console.log(response, 'response');
+    } catch (e) {
+      console.log(e);
+    }
+    // const isValid = /^[a-z0-5]{0,12}$/.test(value);
+    // console.log(isValid);
+    // isValid && this.setState({ 
+    //   account: value,
+    //   isValid: true
+    // }) 
+    // || this.setState({ isValid: false });
+  }
+
+  accountInputMask = (value = '') => {
+    const MAX_SIZE = 12;
+    const rawValue = value.replace(/\s/, '').replace('.tc', '');
+    const length = rawValue.length > MAX_SIZE ? MAX_SIZE : rawValue.length;
+    const mask = Array.apply(null, new Array(length)).map((() => /[a-z0-5]/));
+    return mask;
+  }
+
+  appendWithSuffix = (conformedValue) => {
+    const indexedOfPipedChars = [];
+    const suffix = '.tc';
+    const appendedValue = `${conformedValue}${suffix}`;
+    suffix.split('').forEach((item, index) => {
+      indexedOfPipedChars.push(appendedValue.indexOf(suffix) + index);
+    });
+    return {
+      value: `${conformedValue}${suffix}`,
+      indexedOfPipedChars
+    };
   }
 
   render() {
@@ -50,21 +88,13 @@ class RegistrationPage extends Component<Props> {
     const Logo = (
       <Image style={{ textAlign: 'center', margin: '20px auto' }} src={logo} width="120" alt="Greymass" />
     );
-    const AccountInput = (
-      <Input
-        error={isValid}
-        size="tiny"
-        loading
-        fluid
-        icon="user"
-        placeholder="Account"
-        onChange={this.handleInput}
-      />
-    );
 
     const maskedInput = (
       <MaskedInput
-        mask={[/([a-z0-5])/, /([a-z0-5])?/, /([a-z0-5])?/, /([a-z0-5])?/, /([a-z0-5])?/, /([a-z0-5])?/, /([a-z0-5])?/, /([a-z0-5])?/, /([a-z0-5])?/, /([a-z0-5])?/, /([a-z0-5])?/, /([a-z0-5])?/, '.tc']}
+        guide={false}
+        mask={this.accountInputMask}
+        pipe={this.appendWithSuffix}
+        onChange={this.handleInput}
         placeholder="Enter an account name"
       />
     );
@@ -96,7 +126,7 @@ class RegistrationPage extends Component<Props> {
           />
           <Button
             content={t('continue')}
-            disabled={isValid}
+            disabled={!isValid}
             onClick={this.submit}
             size="small"
             style={{ marginTop: '1em' }}
