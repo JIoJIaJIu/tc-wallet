@@ -133,4 +133,7 @@ body {
   border-radius: 0px !important;
 }
 
+.registration-page__info-message.warning {
+  color: black !important;
+}
 /*# sourceMappingURL=index.css.map */

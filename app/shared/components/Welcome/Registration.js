@@ -10,12 +10,15 @@ class RegistrationPage extends Component<Props> {
     super();
     this.state = {
       account: '',
-      isValid: false
+      isValid: true,
+      step: 1
     };
   }
 
 
-  submit = (e) => {
+  submit = () => {
+    const GENERATE_KEYS_STEP = 2;
+    this.setState({ step: GENERATE_KEYS_STEP });
     // const { isValid }
   }
 
@@ -37,6 +40,15 @@ class RegistrationPage extends Component<Props> {
     //   isValid: true
     // }) 
     // || this.setState({ isValid: false });
+  }
+
+  handleBackAction = () => {
+    const { onStageSelect } = this.props;
+    if (this.state.step === 1) {
+      onStageSelect(0);
+    } else if (this.state.step === 2) {
+      this.setState({ step: 1 });
+    }
   }
 
   accountInputMask = (value = '') => {
@@ -99,6 +111,61 @@ class RegistrationPage extends Component<Props> {
       />
     );
 
+    if (this.state.step === 2) {
+      return (
+        <Segment
+          className="registration-page"
+          size="huge"
+          stacked
+        >
+          Register
+          {Logo}
+          <p style={{ fontSize: '16px' }}>
+            Stage #2: Access key <br />
+            Save your password, it cannot be restored.
+          </p>
+          <Message
+            color="red"
+            compact
+            size="mini"
+            className="registration-page__info-message warning"
+            content={(
+              <p style={{ fontSize: '15px', textAlign: 'center' }}>
+                ВНИМАНИЕ! Ключ доступа НЕ может быть
+                <br />
+                восстановлен в случае утери. Убедитесь, что вы
+                <br />
+                сохранили Ключ Доступа.
+                <br />
+                Не передавайте Ключ Доступа никому, это может
+                <br />
+                повлечь безвозвратную потерю всех средств
+                <br />
+                аккаунта.
+              </p>
+            )}
+            info
+          />
+
+          <div className="login-page__controls-wrapper">
+            <Button
+              content={t('back')}
+              icon="arrow left"
+              onClick={this.handleBackAction}
+              size="small"
+              style={{ marginTop: '1em' }}
+            />
+            <Button
+              content={t('continue')}
+              disabled={!isValid}
+              onClick={this.submit}
+              size="small"
+              style={{ marginTop: '1em' }}
+            />
+          </div>
+        </Segment>
+      );
+    }
     return (
       <Segment
         className="registration-page"
@@ -120,7 +187,7 @@ class RegistrationPage extends Component<Props> {
           <Button
             content={t('back')}
             icon="arrow left"
-            onClick={() => onStageSelect(0)}
+            onClick={this.handleBackAction}
             size="small"
             style={{ marginTop: '1em' }}
           />
