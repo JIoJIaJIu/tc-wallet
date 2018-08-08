@@ -39,7 +39,7 @@ class ConfirmPhoneNumber extends Component<Props> {
 
   signUp = async () => {
     const { smsCode, phoneNumber } = this.state;
-    const { account, actions } = this.props;
+    const { account, actions, history } = this.props;
     const {
       setSetting,
       setTemporaryKey
@@ -55,7 +55,8 @@ class ConfirmPhoneNumber extends Component<Props> {
       });
 
       setSetting('walletTemp', true);
-      setTemporaryKey(localStorage.getItem('publicKey'));
+      // setTemporaryKey(localStorage.getItem('publicKey'));
+      history.push('/voter');
     } catch (e) {
       console.error(e);
     }

@@ -20,7 +20,7 @@ class LoginPage extends Component<Props> {
   }
 
   render() {
-    const { t } = this.props;
+    const { t, onStageSelect } = this.props;
     return (
       <Segment
         className="login-page"
@@ -40,6 +40,17 @@ class LoginPage extends Component<Props> {
               content={t('register')}
               onClick={this.onRegister}
               primary
+              size="small"
+              style={{ marginTop: '1em' }}
+            />
+          </div>
+
+
+          <div className="login-page__controls-wrapper">
+            <Button
+              content={t('back')}
+              icon="arrow left"
+              onClick={() => onStageSelect(-1)}
               size="small"
               style={{ marginTop: '1em' }}
             />

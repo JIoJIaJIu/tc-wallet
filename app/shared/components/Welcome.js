@@ -77,7 +77,9 @@ class Welcome extends Component<Props> {
     }
 
     let stageElement = <WelcomeConnection onStageSelect={this.onStageSelect} stage={stage} />;
-    if (stage >= 0 && validate.NODE === 'SUCCESS') {
+    if (stage == -1) {
+      stageElement = <WelcomeConnection onStageSelect={this.onStageSelect} stage={stage} />; 
+    } else if (stage >= 0 && validate.NODE === 'SUCCESS') {
       stageElement = <Login onStageSelect={this.onStageSelect} />;
       if (stage >= 1 && validate.NODE === 'SUCCESS') {
         stageElement = <Registration onStageSelect={this.onStageSelect} />;
