@@ -4,14 +4,19 @@ import { Button, Container, Segment, Message, Image, Input, Form } from 'semanti
 import { translate } from 'react-i18next';
 import logo from '../../../renderer/basic/tc.png';
 import axios from 'axios';
+import ecc from 'tcjs-ecc'
+import GenerateKeysStep from './GenerateKeysStap';
+import ConfirmPhoneNumber from './ConfirmPhoneNumber';
 
 class RegistrationPage extends Component<Props> {
   constructor() {
     super();
     this.state = {
       account: '',
-      isValid: true,
-      step: 1
+      isValid: false,
+      step: 1,
+      isInputDirty: false,
+      isLoading: false
     };
   }
 
@@ -23,23 +28,20 @@ class RegistrationPage extends Component<Props> {
   }
 
   handleInput = async ({ target: { value } }) => {
+    this.setState({ isInputDirty: true, account: value });
     try {
-      const response = await axios.get('http://eost.travelchain.io/v1/chain/get_account', {
-        params: {
-          account_name: 'eosio'
-        }
+      this.setState({ isLoading: true });
+      await axios.post('https://eost.travelchain.io/v1/chain/get_account', {
+        account_name: value
       });
-      console.log(response, 'response');
+      this.setState({ isValid: false });
     } catch (e) {
-      console.log(e);
+      this.setState({ isValid: true });
+    } finally {
+      this.setState({
+        isLoading: false
+      });
     }
-    // const isValid = /^[a-z0-5]{0,12}$/.test(value);
-    // console.log(isValid);
-    // isValid && this.setState({ 
-    //   account: value,
-    //   isValid: true
-    // }) 
-    // || this.setState({ isValid: false });
   }
 
   handleBackAction = () => {
@@ -48,11 +50,13 @@ class RegistrationPage extends Component<Props> {
       onStageSelect(0);
     } else if (this.state.step === 2) {
       this.setState({ step: 1 });
+    } else if (this.state.step === 3) {
+      this.setState({ step: 2 });
     }
   }
 
   accountInputMask = (value = '') => {
-    const MAX_SIZE = 12;
+    const MAX_SIZE = 9;
     const rawValue = value.replace(/\s/, '').replace('.tc', '');
     const length = rawValue.length > MAX_SIZE ? MAX_SIZE : rawValue.length;
     const mask = Array.apply(null, new Array(length)).map((() => /[a-z0-5]/));
@@ -75,8 +79,7 @@ class RegistrationPage extends Component<Props> {
   render() {
     const { t, onStageSelect } = this.props;
     const { isValid } = this.state;
-    const { account } = this.state;
-    const isLoading = false;
+    const { account, isInputDirty, isLoading } = this.state;
 
     const message = (
       <Message
@@ -113,57 +116,17 @@ class RegistrationPage extends Component<Props> {
 
     if (this.state.step === 2) {
       return (
-        <Segment
-          className="registration-page"
-          size="huge"
-          stacked
-        >
-          Register
-          {Logo}
-          <p style={{ fontSize: '16px' }}>
-            Stage #2: Access key <br />
-            Save your password, it cannot be restored.
-          </p>
-          <Message
-            color="red"
-            compact
-            size="mini"
-            className="registration-page__info-message warning"
-            content={(
-              <p style={{ fontSize: '15px', textAlign: 'center' }}>
-                ВНИМАНИЕ! Ключ доступа НЕ может быть
-                <br />
-                восстановлен в случае утери. Убедитесь, что вы
-                <br />
-                сохранили Ключ Доступа.
-                <br />
-                Не передавайте Ключ Доступа никому, это может
-                <br />
-                повлечь безвозвратную потерю всех средств
-                <br />
-                аккаунта.
-              </p>
-            )}
-            info
-          />
-
-          <div className="login-page__controls-wrapper">
-            <Button
-              content={t('back')}
-              icon="arrow left"
-              onClick={this.handleBackAction}
-              size="small"
-              style={{ marginTop: '1em' }}
-            />
-            <Button
-              content={t('continue')}
-              disabled={!isValid}
-              onClick={this.submit}
-              size="small"
-              style={{ marginTop: '1em' }}
-            />
-          </div>
-        </Segment>
+        <GenerateKeysStep
+          backHandler={this.handleBackAction}
+          onSuccess={() => this.setState({ step: 3 })}
+        />
+      );
+    } else if (this.state.step === 3) {
+      return (
+        <ConfirmPhoneNumber
+          account={this.state.account}
+          backHandler={this.handleBackAction}
+        />
       );
     }
     return (
@@ -178,6 +141,13 @@ class RegistrationPage extends Component<Props> {
           Stage #1: Account <br />
           Enter the desired username
         </p>
+
+        {!isValid && isInputDirty
+          ?
+            <p className="input-error">Account name is busy or not valid.</p>
+          :
+            null
+        }
         <div className={'ui tiny fluid icon input ' + (isLoading ? 'loading' : '')}>
           {maskedInput}
           <i aria-hidden="true" className="user icon" />

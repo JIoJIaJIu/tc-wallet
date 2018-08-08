@@ -27,21 +27,23 @@ class LoginPage extends Component<Props> {
         size="huge"
         stacked
       >
-        <Container className="login-page__controls-wrapper">
-          <Button
-            content={t('login')}
-            onClick={this.onLogin}
-            primary
-            size="small"
-            style={{ marginTop: '1em' }}
-          />
-          <Button
-            content={t('register')}
-            onClick={this.onRegister}
-            primary
-            size="small"
-            style={{ marginTop: '1em' }}
-          />
+        <Container>
+          <div className="login-page__controls-wrapper login-page-buttons">
+            <Button
+              content={t('login')}
+              onClick={this.onLogin}
+              primary
+              size="small"
+              style={{ marginTop: '1em' }}
+            />
+            <Button
+              content={t('register')}
+              onClick={this.onRegister}
+              primary
+              size="small"
+              style={{ marginTop: '1em' }}
+            />
+          </div>
         </Container>
       </Segment>
     );

@@ -12,6 +12,7 @@ export default class FormFieldAccount extends Component<Props> {
     this.setState({
       value: parsed
     }, () => {
+      console.log(123);
       this.props.onChange(e, { name, value: parsed });
     });
   }, 300)

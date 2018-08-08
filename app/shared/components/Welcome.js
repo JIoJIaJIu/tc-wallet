@@ -79,7 +79,7 @@ class Welcome extends Component<Props> {
       (validate.NODE === 'SUCCESS' && validate.ACCOUNT === 'SUCCESS')
       || (settings.walletMode === 'cold' && settings.account)
     ) {
-      stage = 3;
+      // stage = 3;
     } else if (validate.NODE === 'SUCCESS' || settings.walletMode === 'cold') {
       stage = 2;
     }

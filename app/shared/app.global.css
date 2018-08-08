@@ -123,10 +123,18 @@ body {
   position: relative
 }
 
+.login-page-buttons {
+  padding: 40px 0;
+}
+
 .login-page__controls-wrapper {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
+}
+
+.login-page__controls-wrapper button:first-child {
+  margin-right: 20px;
 }
 
 .registration-page__info-message {
@@ -135,5 +143,13 @@ body {
 
 .registration-page__info-message.warning {
   color: black !important;
+}
+
+.registration-page .input-error {
+  color: white;
+  font-size: 12px;
+  background-color: lightcoral;
+  padding: 10px;
+  text-align: center;
 }
 /*# sourceMappingURL=index.css.map */

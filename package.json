@@ -234,6 +234,7 @@
   "dependencies": {
     "@material-ui/core": "^1.4.1",
     "axios": "^0.18.0",
+    "cleave.js": "^1.4.2",
     "crypto-js": "^3.1.9-1",
     "decimal.js": "^10.0.1",
     "electron-store": "^2.0.0",
@@ -246,6 +247,7 @@
     "i18next-sync-fs-backend": "^1.1.0",
     "pretty-bytes": "^5.1.0",
     "react": "^16.4.0",
+    "react-clipboard.js": "^2.0.0",
     "react-dom": "^16.4.0",
     "react-hot-loader": "^4.3.0",
     "react-i18next": "^7.7.0",
@@ -255,6 +257,7 @@
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^5.0.0-alpha.9",
+    "react-spinners": "^0.3.3",
     "react-text-mask": "^5.4.2",
     "react-timeago": "^4.1.9",
     "redux": "^4.0.0",
@@ -263,7 +266,8 @@
     "redux-persist": "^5.10.0",
     "redux-persist-electron-storage": "^1.1.2",
     "redux-thunk": "^2.3.0",
-    "tcjs": "^15.0.7"
+    "tcjs": "^15.0.7",
+    "tcjs-ecc": "^4.0.3"
   },
   "devEngines": {
     "node": ">=7.x",
