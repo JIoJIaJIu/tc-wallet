@@ -16,8 +16,8 @@ If you are concerned about revealing this information to any of these 3rd party 
 # EOS Nodes
 
 - https://eos.greymass.com - operated by [greymass](https://greymass.com)
-- http://mainnet.eoscalgary.io - operated by [EOS Cafe](https://eoscafecalgary.com/)
-- http://api.eosnewyork.io - operated by [EOS New York](https://www.eosnewyork.io/)
+- https://mainnet.eoscalgary.io - operated by [EOS Cafe](https://eoscafecalgary.com/)
+- https://api.eosnewyork.io - operated by [EOS New York](https://www.eosnewyork.io/)
 - https://api.eosdetroit.io - operated by [EOS Detroit](http://eosdetroit.io/)
 - http://api.hkeos.com - operated by [HK EOS](https://www.hkeos.com/)
 - https://bp.cryptolions.io - operated by [CryptoLions](http://CryptoLions.io/)
@@ -30,6 +30,8 @@ If you are concerned about revealing this information to any of these 3rd party 
 - https://eosapi.blockmatrix.network - operated by [Block Matrix](https://blockmatrix.network)
 - https://user-api.eoseoul.io - operated by [EOSeoul](https://portal.eoseoul.io/)
 - https://api.eos.bitspace.no - operated by [Bitspace](https://eos.bitspace.no/)
+- https://node.eosflare.io - operated by [EOS Flare](https://eosflare.io/)
+- https://api-eos.blckchnd.com - operated by [BLCKCHND](https://eos.blckchnd.com/)
 
 ### Additions
 

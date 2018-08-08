@@ -12,7 +12,7 @@ export function delegatebw(delegator, receiver, netAmount, cpuAmount) {
       type: types.SYSTEM_DELEGATEBW_PENDING
     });
 
-    return eos(connection).transaction(tr => {
+    return eos(connection, true).transaction(tr => {
       tr.delegatebw(delegatebwParams(delegator, receiver, netAmount, cpuAmount));
     }).then((tx) => {
       dispatch(AccountActions.getAccount(delegator));
@@ -27,9 +27,9 @@ export function delegatebw(delegator, receiver, netAmount, cpuAmount) {
   };
 }
 
-export function delegatebwParams(delegator, receiver, netAmount, cpuAmount) {
-  const stakeNetAmount = netAmount || 0;
-  const stakeCpuAmount = cpuAmount || 0;
+export function delegatebwParams(delegator, receiver, netAmount, cpuAmount, transferTokens) {
+  const stakeNetAmount = parseFloat(netAmount) || 0;
+  const stakeCpuAmount = parseFloat(cpuAmount) || 0;
 
   return {
     from: delegator,

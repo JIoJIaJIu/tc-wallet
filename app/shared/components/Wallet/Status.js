@@ -8,6 +8,8 @@ import { Header, Menu, Segment } from 'semantic-ui-react';
 import WalletStatusBalances from './Status/Balances';
 import WalletStatusResources from './Status/Resources';
 import WalletStatusStaked from './Status/Staked';
+import WalletStatusActions from './Status/Actions';
+import WalletStatusWaiting from './Status/Waiting';
 
 import StatsFetcher from '../../utils/StatsFetcher';
 
@@ -21,16 +23,24 @@ class WalletStatus extends Component<Props> {
   render() {
     const {
       accounts,
+      actionHistories,
       actions,
       balances,
+      blockExplorers,
+      chain,
       globals,
       settings,
-      t
+      t,
+      validate
     } = this.props;
 
     const {
       activeItem
     } = this.state;
+
+    if (settings.walletMode === 'wait') {
+      return <WalletStatusWaiting />;
+    }
 
     const account = accounts[settings.account] || {};
     const balance = balances[settings.account] || {};
@@ -50,6 +60,7 @@ class WalletStatus extends Component<Props> {
         case 'balances': {
           activeTab = (
             <WalletStatusBalances
+              account={account}
               actions={actions}
               balances={balances}
               globals={globals}
@@ -64,6 +75,19 @@ class WalletStatus extends Component<Props> {
             <WalletStatusStaked
               account={account}
               statsFetcher={statsFetcher}
+            />
+          );
+          break;
+        }
+        case 'actions': {
+          activeTab = (
+            <WalletStatusActions
+              actionHistory={actionHistories[settings.account]}
+              actions={actions}
+              blockExplorers={blockExplorers}
+              chain={chain}
+              settings={settings}
+              validate={validate}
             />
           );
           break;
@@ -95,7 +119,7 @@ class WalletStatus extends Component<Props> {
         <Segment>
           <Menu
             pointing
-            size="large"
+            size="small"
             secondary
           >
             <Menu.Item
@@ -110,6 +134,13 @@ class WalletStatus extends Component<Props> {
               icon="power cord"
               content={t('wallet_status_tab_staked')}
               active={activeItem === 'staked'}
+              onClick={this.handleItemClick}
+            />
+            <Menu.Item
+              name="actions"
+              icon="book"
+              content={t('wallet_status_tab_account_history')}
+              active={activeItem === 'actions'}
               onClick={this.handleItemClick}
             />
             <Menu.Item

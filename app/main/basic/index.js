@@ -9,6 +9,8 @@ const fs = require('fs');
 const log = require('electron-log');
 const path = require('path');
 
+require('electron-context-menu')();
+
 const createInterface = (resourcePath, route = '/', closable = true, store) => {
   log.info('ui: creating');
 
@@ -93,7 +95,7 @@ ipcMain.on('saveFile', (event, data, prefix = 'tx') => {
   const defaultPath = app.getPath('documents');
   const defaultFilename = `${prefix}-${getDateString()}.json`;
   const fileName = dialog.showSaveDialog({
-    title: 'Save Unsigned Transaction',
+    title: 'Save File',
     defaultPath: `${defaultPath}/${defaultFilename}`,
     filters: [
       { name: 'JSON Files', extensions: ['json'] }

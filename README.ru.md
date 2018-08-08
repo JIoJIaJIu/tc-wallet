@@ -24,12 +24,12 @@
 
 ### Релизы
 
-Текущая версия 0.2.2:
+Текущая версия 0.4.1:
 
-- [Windows Installer](https://github.com/greymass/eos-voter/releases/download/v0.2.2/win-eos-voter-0.2.2.exe)
-- [macOS Package](https://github.com/greymass/eos-voter/releases/download/v0.2.2/mac-eos-voter-0.2.2.dmg)
-- [Linux (deb)](https://github.com/greymass/eos-voter/releases/download/v0.2.2/linux-eos-voter-0.2.2-amd64.deb)
-- [Linux (snap)](https://github.com/greymass/eos-voter/releases/download/v0.2.2/linux-eos-voter-0.2.2-amd64.snap)
+- [Windows Installer](https://github.com/greymass/eos-voter/releases/download/v0.4.1/win-eos-voter-0.4.1.exe)
+- [macOS Package](https://github.com/greymass/eos-voter/releases/download/v0.4.1/mac-eos-voter-0.4.1.dmg)
+- [Linux (deb)](https://github.com/greymass/eos-voter/releases/download/v0.4.1/linux-eos-voter-0.4.1-amd64.deb)
+- [Linux (snap)](https://github.com/greymass/eos-voter/releases/download/v0.4.1/linux-eos-voter-0.4.1-amd64.snap)
 
 Последняя версия всегда будет доступна на странице выпусков этого репозитория:
 
@@ -92,30 +92,22 @@ yarn dev
 Чтобы проверить целостность выпусков, загружаемых с GitHub, ниже приведены результаты shasum для каждого из двоичных файлов:
 
 ```
-shasum -b -a 512 linux-eos-voter-0.2.2-i386.deb
-acc63feded2f88e9ff4f2752400bf1a482ca55b87b756aa7376ede3d28aaf72ae4c62da6528b6d2b0eab039195d627ddf80244dc6192d71c55c41cd8ab7de481 *linux-eos-voter-0.2.2-i386.deb
-
-shasum -b -a 512 linux-eos-voter-0.2.2-amd64.deb
-26704939f44f463881e2f6c3abcd9b1bb8d268db276fd233c5452468cacf574e1d88724f7e0d407bfea03deff1e6435f6891aa8ee0d045ff92b75f6cc98fe88b *linux-eos-voter-0.2.2-amd64.deb
-
-shasum -b -a 512 linux-eos-voter-0.2.2-arm64.deb
-fc43236352d9f6bd661c93f154386b788b227df5ef1e81be7d0345c3a06ba0973561742191a92018091451127dd223bc22014d9a9ad7159b093aae0ea175ceda *linux-eos-voter-0.2.2-arm64.deb
-
-shasum -b -a 512 linux-eos-voter-0.2.2-armv7l.deb
-e83c04cef0fee0070f9f2f9e93ad38a357c8d7d3d9c49a0f9efd24c3ebe12ec85676365a6e24eb13a4d904e69c94f41cdda09abeecef6ccedd02c7553ae99acf *linux-eos-voter-0.2.2-armv7l.deb
-
-shasum -b -a 512 linux-eos-voter-0.2.2-amd64.snap
-097942f10b2c4dca49356ff2e83d2c1bea01ef46a422bd1e2b26d64da8c643a78b72bbefb4a7a9aab8c5ef6ec869461d61c11e50cf1abfb01b6240da4d399bea *linux-eos-voter-0.2.2-amd64.snap
-
-shasum -b -a 512 linux-eos-voter-0.2.2-x86_64.AppImage
-9cc312436528a07d134dd58a9362c8638057354a83752b94f94104444c4d271fa1b38b689f5bc9b02ec43538721ff5f95cc23e6085ee5887d5be48cc58d155f1 *linux-eos-voter-0.2.2-x86_64.AppImage
-
-shasum -b -a 512 mac-eos-voter-0.2.2.zip
-355e7d18f462d7586af58acdfa7aff4c363e78d78d76a3c2cec9e3525e1c75a79ad988122f9b12337bcc1dfa78dfddec1deb3973aeb7fa5472cb3c036a581e06 *mac-eos-voter-0.2.2.zip
-
-shasum -b -a 512 win-eos-voter-0.2.2.exe
-56afe1adfa4dfa1b753db6f87b71f6b929e72003b4db50504e97b67990da067c4157c99062297522c6af067af921106f73375d4974c8e565e44816feabebff78 *win-eos-voter-0.2.2.exe
-
-shasum -b -a 512 mac-eos-voter-0.2.2.dmg
-56d17e0561c9ce9d06f9d1d159f5a77889d4ebb08f20e675823d3529c97c82b8108159f5144e171665c793d7ea7dc65e5b2c4bfe195ec0ae10866608855714b3 *mac-eos-voter-0.2.2.dmg
+shasum -b -a 512 linux-eos-voter-0.4.1-amd64.deb
+a767a8a85de0a7b2e7cada4ea9c80ee5610117c8eb9b09b09305671577474a238b5ead10ed9cb32a132fc7ceadf935de4176822788ed4da88fdf015635663aab *linux-eos-voter-0.4.1-amd64.deb
+shasum -b -a 512 linux-eos-voter-0.4.1-amd64.snap
+1a14c2cfa69500f8534eed13a449835c153424b2a02337e3d7d0d13d1c88d50e4d10d20e2c78ab967653b4896848f3fc47fea4aef2a084076a028313a43bc2fb *linux-eos-voter-0.4.1-amd64.snap
+shasum -b -a 512 linux-eos-voter-0.4.1-arm64.deb
+7f20c47f724e71ae1c7b4bf130170b33803bfdf83e124bc9f7fd6ab21e5071c7a48a7e5447218cae1e6cd45f32303a314f2c47c32b9b9d2baf61bdb8677cb015 *linux-eos-voter-0.4.1-arm64.deb
+shasum -b -a 512 linux-eos-voter-0.4.1-armv7l.deb
+389cf80e3e28e71bfcbd5b8850736b27722edb4063dfc6a450ae9f8a1240d7fd5e39fd13b4cdc6f3f4087e512df98e9e73b1c900e00495cf5608f4b1655ffe09 *linux-eos-voter-0.4.1-armv7l.deb
+shasum -b -a 512 linux-eos-voter-0.4.1-i386.deb
+91c0697bb0b50af607517690c2423f0c07f997eaf4f488800eb7abdb68e26d1c2b36c5c1622c1afaaba150701e864899a250b79679602b729ff8f48859762bb5 *linux-eos-voter-0.4.1-i386.deb
+shasum -b -a 512 linux-eos-voter-0.4.1-x86_64.AppImage
+cec2f578ddbb01508327b2c5dab4ee476c8ba141d8a7cc10c5fef3da1bcf83d6e9922588882baa06f00c4e49792c1b166eba14a3658733d8eb1b85aa7539f716 *linux-eos-voter-0.4.1-x86_64.AppImage
+shasum -b -a 512 mac-eos-voter-0.4.1.dmg
+efdf141a65a65424783f394e712338e57b653e6322d7e08039fe796755211f4d8cde27fa9a0a120abbc338dd360f882f4388dd3022ab94831fea10c09f78e433 *mac-eos-voter-0.4.1.dmg
+shasum -b -a 512 mac-eos-voter-0.4.1.zip
+ed5a7e73a6f6b6e2716fbb8396713cd3184e17e640bc8b51a4b141b7f50e478b23d26374aed78670fc1d5bf4d5e4bcabc803dedb7679e83c02a5cc004910e603 *mac-eos-voter-0.4.1.zip
+shasum -b -a 512 win-eos-voter-0.4.1.exe
+6cac7e0cf78e02e10a91fc008cbef02dc4f51e013493d412f1bd412d732371ead7bd770979b890df8f09312ab53003c04787bc7beb1a5fb6ef61551333d74852 *win-eos-voter-0.4.1.exe
 ```

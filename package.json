@@ -84,6 +84,7 @@
     },
     "linux": {
       "category": "Network",
+      "description": "Simple light wallet and block producer voting tool for the EOS blockchain",
       "desktop": {
         "Name": "tc-wallet",
         "GenericName": "TravelChain Voting Client + Wallet",
@@ -108,6 +109,9 @@
         "AppImage",
         "snap"
       ]
+    },
+    "snap": {
+      "synopsis": "Simple light wallet and block producer voting tool for the EOS blockchain"
     },
     "directories": {
       "buildResources": "resources",
@@ -177,7 +181,7 @@
     "detect-port": "^1.2.3",
     "devtron": "^1.4.0",
     "electron": "^2.0.2",
-    "electron-builder": "20.14.7",
+    "electron-builder": "20.19.2",
     "electron-debug": "^2.0.0",
     "electron-devtools-installer": "^2.2.4",
     "electron-log": "^2.2.14",
@@ -237,8 +241,11 @@
     "cleave.js": "^1.4.2",
     "crypto-js": "^3.1.9-1",
     "decimal.js": "^10.0.1",
+    "dot-prop-immutable": "^1.4.0",
+    "electron-context-menu": "^0.10.0",
     "electron-store": "^2.0.0",
     "electron-updater": "^2.21.10",
+    "eosjs": "15.0.6",
     "history": "^4.7.2",
     "i": "^0.3.6",
     "i18next": "^11.3.2",
@@ -251,6 +258,7 @@
     "react-dom": "^16.4.0",
     "react-hot-loader": "^4.3.0",
     "react-i18next": "^7.7.0",
+    "react-idle-timer": "^4.0.7",
     "react-input-range": "^1.3.0",
     "react-json-view": "^1.17.0",
     "react-redux": "^5.0.7",

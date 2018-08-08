@@ -121,7 +121,7 @@ class WalletPanelFormStake extends Component<Props> {
     const cpuChange = cpuAmount.minus(cpuOriginal);
     const netChange = netAmount.minus(netOriginal);
 
-    if (Math.max(0, cpuChange) + Math.max(0, netChange) > EOSbalance) {
+    if (Decimal.max(0, cpuChange).plus(Decimal.max(0, netChange)).greaterThan(EOSbalance)) {
       return 'not_enough_balance';
     }
 
@@ -181,7 +181,6 @@ class WalletPanelFormStake extends Component<Props> {
     return (
       <Segment
         loading={system.STAKE === 'PENDING'}
-        style={{ minHeight: '100px' }}
       >
         {(shouldShowForm)
           ? (

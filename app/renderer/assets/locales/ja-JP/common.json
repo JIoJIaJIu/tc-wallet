@@ -1,18 +1,19 @@
 {
   "application_name": "tc-wallet",
   "application_version": "v0.2.2",
-  "block_height": "ブロック高",
+  "back": "戻る",
   "cancel": "キャンセル",
   "close": "閉じる",
   "confirm": "確認",
+  "continue_setup": "アカウント設定を続行する",
+  "copy_to_clipboard": "クリップボードにコピー",
   "error": "エラー",
   "loading": "ロードしました",
-  "search": "検索...",
-  "waiting": "待機中...",
-  "reset_application": "デバッグ: アプリケーションをリセット",
-  "continue_setup": "アカウント設定を続行する",
+  "next": "次へ",
   "property": "プロパティ",
+  "remove": "削除",
+  "reset_application": "デバッグ: アプリケーションをリセット",
+  "search": "検索...",
   "value": "値",
-  "back": "戻る",
-  "remove": "削除"
+  "waiting": "待機中..."
 }

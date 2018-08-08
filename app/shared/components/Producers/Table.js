@@ -2,16 +2,19 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
 import { debounce, filter, findIndex } from 'lodash';
-import { Grid, Header, Input, Loader, Segment, Transition, Table } from 'semantic-ui-react';
+import { Grid, Header, Input, Segment, Transition, Table } from 'semantic-ui-react';
+import { get } from 'dot-prop-immutable';
 
-import ProducersVoteWeight from './Vote/Weight';
+import ProducersModalInfo from './Modal/Info.js';
 import ProducersTableRow from './Table/Row';
+import ProducersVoteWeight from './Vote/Weight';
 
 class ProducersTable extends Component<Props> {
   constructor(props) {
     super(props);
     this.state = {
-      query: false
+      query: false,
+      viewing: false
     };
   }
 
@@ -31,17 +34,24 @@ class ProducersTable extends Component<Props> {
     return (query && query.length > 0);
   }
 
+  clearProducerInfo = () => this.setState({ viewing: false });
+  getProducerInfo = (producer) => this.setState({ viewing: producer });
+
   render() {
     const {
       amount,
       globals,
+      isProxying,
+      isValidUser,
       producers,
       selected,
-      t,
-      validUser
+      settings,
+      system,
+      t
     } = this.props;
     const {
-      query
+      query,
+      viewing
     } = this.state;
     const {
       current
@@ -72,21 +82,28 @@ class ProducersTable extends Component<Props> {
         <Table.Body key="FullResults">
           {fullResults.map((producer, idx) => {
             const isSelected = (selected.indexOf(producer.owner) !== -1);
+            const hasInfo = !!(get(producers.producersInfo, producer.owner));
             return (
               <ProducersTableRow
                 addProducer={this.props.addProducer}
-                key={producer.key}
+                getProducerInfo={this.getProducerInfo}
+                hasInfo={hasInfo}
+                key={`${isProxying}-${producer.key}-${hasInfo}`}
+                isProxying={isProxying}
                 isSelected={isSelected}
+                isValidUser={isValidUser}
                 position={idx + 1}
                 producer={producer}
                 removeProducer={this.props.removeProducer}
+                system={system}
+                settings={settings}
                 totalVoteWeight={totalVoteWeight}
-                validUser={validUser}
               />
             );
           })}
         </Table.Body>
       );
+
       if (querying) {
         const partResults = filter(producers.list, (producer) =>
           producer.owner.indexOf(query) > -1).slice(0, amount);
@@ -95,16 +112,21 @@ class ProducersTable extends Component<Props> {
             <Table.Body key="PartResults">
               {partResults.map((producer) => {
                 const isSelected = (selected.indexOf(producer.owner) !== -1);
+                const hasInfo = !!(get(producers.producersInfo, producer.owner));
                 return (
                   <ProducersTableRow
                     addProducer={this.props.addProducer}
+                    getProducerInfo={this.getProducerInfo}
+                    hasInfo={hasInfo}
                     key={producer.key}
+                    isProxying={isProxying}
                     isSelected={isSelected}
+                    isValidUser={isValidUser}
                     position={findIndex(producers.list, { owner: producer.owner }) + 1}
                     producer={producer}
                     removeProducer={this.props.removeProducer}
+                    settings={settings}
                     totalVoteWeight={totalVoteWeight}
-                    validUser={validUser}
                   />
                 );
               })}
@@ -115,8 +137,14 @@ class ProducersTable extends Component<Props> {
     }
     return (
       <Segment basic loading={loading} vertical>
+        <ProducersModalInfo
+          producerInfo={producers.producersInfo[viewing]}
+          onClose={this.clearProducerInfo}
+          settings={settings}
+          viewing={viewing}
+        />
         <Grid>
-          <Grid.Column width="10">
+          <Grid.Column width={8}>
             <Header size="small">
               {activatedStake.toLocaleString()} {t('block_producer_eos_staked')} ({activatedStakePercent}%)
               <Header.Subheader>
@@ -128,7 +156,7 @@ class ProducersTable extends Component<Props> {
               </Header.Subheader>
             </Header>
           </Grid.Column>
-          <Grid.Column width="6" textAlign="right">
+          <Grid.Column width={8} key="ProducersVotingPreview" textAlign="right">
             <Input
               icon="search"
               onChange={this.onSearchChange}

@@ -2,6 +2,7 @@ import * as types from '../actions/types';
 
 const initialState = {
   account: false,
+  hash: '',
   key: '',
   temporary: false
 };
@@ -13,17 +14,18 @@ export default function keys(state = initialState, action) {
     case types.WALLET_REMOVE: {
       return Object.assign({}, initialState);
     }
-    case types.SET_TEMPORARY_KEY: {
+    case types.SET_WALLET_KEYS_TEMPORARY: {
       return Object.assign({}, state, {
         account: action.payload.account,
+        hash: action.payload.hash,
         key: action.payload.key,
         temporary: true
       });
     }
-    case types.VALIDATE_WALLET_PASSWORD_SUCCESS:
-    case types.SET_WALLET_KEY: {
+    case types.SET_WALLET_KEYS_ACTIVE: {
       return Object.assign({}, state, {
         account: action.payload.account,
+        hash: action.payload.hash,
         key: action.payload.key,
         temporary: false
       });

@@ -9,16 +9,19 @@ class FormMessageError extends Component<Props> {
       error,
       errors,
       onClose,
+      style,
       t
     } = this.props;
 
     const errorMessages = (errors || []);
 
-    errorMessages.push(error);
+    if (error) {
+      errorMessages.push(error);
+    }
 
-    return (error || errors)
+    return (error || (errors && errors.length > 0))
       ? (
-        <div>
+        <div style={style}>
           <Message negative>
             <Header>{t('error')}</Header>
             { errorMessages.map((err) => <p key={err}>{t(`error_${err}`)}</p>) }

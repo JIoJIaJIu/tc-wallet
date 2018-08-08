@@ -15,16 +15,22 @@ import Wallet from '../components/Wallet';
 import ModalConstitution from '../components/Global/Modal/Constitution';
 
 import * as AccountsActions from '../actions/accounts';
+import * as BlockExplorersActions from '../actions/blockexplorers';
+import * as BuyRamBytesActions from '../actions/system/buyrambytes';
+import * as BuyRamActions from '../actions/system/buyram';
+import * as CreateAccountActions from '../actions/createaccount';
 import * as ChainActions from '../actions/chain';
 import * as GlobalsActions from '../actions/globals';
 import * as ProducersActions from '../actions/producers';
+import * as SellRamActions from '../actions/system/sellram';
 import * as SettingsActions from '../actions/settings';
-import * as ValidateActions from '../actions/validate';
-import * as WalletActions from '../actions/wallet';
 import * as StakeActions from '../actions/stake';
 import * as TransactionActions from '../actions/transaction';
 import * as TransferActions from '../actions/transfer';
+import * as ValidateActions from '../actions/validate';
 import * as VoteProducerActions from '../actions/system/voteproducer';
+import * as WalletActions from '../actions/wallet';
+import * as SystemStateActions from '../actions/system/systemstate';
 
 type Props = {
   actions: {
@@ -53,11 +59,11 @@ class BasicVoterContainer extends Component<Props> {
     const {
       actions,
       history,
-      keys,
       settings
     } = this.props;
 
     const {
+      getBlockExplorers,
       getCurrencyStats
     } = actions;
 
@@ -71,10 +77,11 @@ class BasicVoterContainer extends Component<Props> {
           history.push('/');
         } else {
           getCurrencyStats();
+          getBlockExplorers();
           forEach(settings.customTokens, (token) => {
             const [contract, symbol] = token.split(':');
             getCurrencyStats(contract, symbol.toUpperCase());
-          })
+          });
         }
       }
     }
@@ -97,6 +104,7 @@ class BasicVoterContainer extends Component<Props> {
       getGlobals,
       getInfo
     } = actions;
+
     if (validate.NODE === 'SUCCESS') {
       if (settings.account) {
         getAccount(settings.account);
@@ -114,12 +122,12 @@ class BasicVoterContainer extends Component<Props> {
     } = this.state;
     const {
       actions,
-      globals,
       keys,
       settings,
       validate,
       wallet
     } = this.props;
+
     let activeTab = <Producers {...this.props} />;
     switch (activeItem) {
       case 'wallet': {
@@ -131,7 +139,7 @@ class BasicVoterContainer extends Component<Props> {
         break;
       }
       case 'tools': {
-        activeTab = <Tools />;
+        activeTab = <Tools {...this.props} />;
         break;
       }
       default: {
@@ -169,7 +177,9 @@ class BasicVoterContainer extends Component<Props> {
 function mapStateToProps(state) {
   return {
     accounts: state.accounts,
+    actionHistories: state.actions,
     balances: state.balances,
+    blockExplorers: state.blockexplorers,
     chain: state.chain,
     globals: state.globals,
     keys: state.keys,
@@ -186,16 +196,22 @@ function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
       ...AccountsActions,
+      ...BlockExplorersActions,
+      ...BuyRamActions,
+      ...BuyRamBytesActions,
       ...ChainActions,
+      ...CreateAccountActions,
       ...GlobalsActions,
       ...ProducersActions,
+      ...SellRamActions,
       ...SettingsActions,
-      ...ValidateActions,
-      ...WalletActions,
       ...StakeActions,
+      ...SystemStateActions,
       ...TransactionActions,
       ...TransferActions,
-      ...VoteProducerActions
+      ...ValidateActions,
+      ...VoteProducerActions,
+      ...WalletActions
     }, dispatch)
   };
 }

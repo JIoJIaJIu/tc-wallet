@@ -4,15 +4,32 @@ import { setSetting } from './settings';
 const CryptoJS = require('crypto-js');
 const ecc = require('tcjs-ecc');
 
-export function setWalletKey(key, password) {
+export function setWalletKey(data, password, mode = 'hot', existingHash = false) {
   return (dispatch: () => void, getState) => {
     const { settings } = getState();
+    let hash = existingHash;
+    let key = data;
+    let obfuscated = data;
+    if (existingHash) {
+      key = decrypt(data, existingHash, 1).toString(CryptoJS.enc.Utf8);
+    } else {
+      hash = encrypt(password, password, 1).toString(CryptoJS.enc.Utf8);
+      obfuscated = encrypt(key, hash, 1).toString(CryptoJS.enc.Utf8);
+    }
+    dispatch({
+      type: types.SET_WALLET_KEYS_ACTIVE,
+      payload: {
+        account: settings.account,
+        hash,
+        key: obfuscated
+      }
+    });
     return dispatch({
-      type: types.SET_WALLET_KEY,
+      type: types.SET_WALLET_ACTIVE,
       payload: {
         account: settings.account,
         data: encrypt(key, password),
-        key
+        mode
       }
     });
   };
@@ -21,11 +38,15 @@ export function setWalletKey(key, password) {
 export function setTemporaryKey(key) {
   return (dispatch: () => void, getState) => {
     const { settings } = getState();
+    // Obfuscate key for in-memory storage
+    const hash = encrypt(key, key, 1).toString(CryptoJS.enc.Utf8);
+    const obfuscated = encrypt(key, hash, 1).toString(CryptoJS.enc.Utf8);
     dispatch({
-      type: types.SET_TEMPORARY_KEY,
+      type: types.SET_WALLET_KEYS_TEMPORARY,
       payload: {
         account: settings.account,
-        key
+        hash,
+        key: obfuscated
       }
     });
   };
@@ -47,24 +68,82 @@ export function removeWallet() {
   };
 }
 
-export function unlockWallet(wallet, password) {
-  return (dispatch: () => void) => {
+export function validateWalletPassword(password, useWallet = false) {
+  return (dispatch: () => void, getState) => {
+    let { wallet } = getState();
+    // If a wallet was passed to be used, use that instead of state.
+    if (useWallet && useWallet.data) {
+      wallet = useWallet;
+    }
     dispatch({
       type: types.VALIDATE_WALLET_PASSWORD_PENDING
     });
-    const key = decrypt(wallet.data, password).toString(CryptoJS.enc.Utf8);
-    if (ecc.isValidPrivate(key) === true) {
+    setTimeout(() => {
+      try {
+        const key = decrypt(wallet.data, password).toString(CryptoJS.enc.Utf8);
+        if (ecc.isValidPrivate(key) === true) {
+          return dispatch({
+            type: types.VALIDATE_WALLET_PASSWORD_SUCCESS
+          });
+        }
+      } catch (err) {
+        return dispatch({
+          err,
+          type: types.VALIDATE_WALLET_PASSWORD_FAILURE
+        });
+      }
       return dispatch({
-        payload: {
-          account: wallet.account,
-          key
-        },
-        type: types.VALIDATE_WALLET_PASSWORD_SUCCESS
+        type: types.VALIDATE_WALLET_PASSWORD_FAILURE
       });
+    }, 10);
+  };
+}
+
+export function unlockWallet(password, useWallet = false) {
+  return (dispatch: () => void, getState) => {
+    let { wallet } = getState();
+    // If a wallet was passed to be used, use that instead of state.
+    if (useWallet && useWallet.data) {
+      wallet = useWallet;
     }
-    return dispatch({
-      type: types.VALIDATE_WALLET_PASSWORD_FAILURE
+    dispatch({
+      type: types.VALIDATE_WALLET_PASSWORD_PENDING
     });
+    setTimeout(() => {
+      try {
+        let key = decrypt(wallet.data, password).toString(CryptoJS.enc.Utf8);
+        if (ecc.isValidPrivate(key) === true) {
+          // Set the active wallet
+          dispatch({
+            payload: wallet,
+            type: types.SET_WALLET_ACTIVE
+          });
+          // Obfuscate key for in-memory storage
+          const hash = encrypt(password, password, 1).toString(CryptoJS.enc.Utf8);
+          key = encrypt(key, hash, 1).toString(CryptoJS.enc.Utf8);
+          // Set the keys for use
+          dispatch({
+            payload: {
+              account: wallet.account,
+              hash,
+              key
+            },
+            type: types.SET_WALLET_KEYS_ACTIVE
+          });
+          return dispatch({
+            type: types.VALIDATE_WALLET_PASSWORD_SUCCESS
+          });
+        }
+      } catch (err) {
+        return dispatch({
+          err,
+          type: types.VALIDATE_WALLET_PASSWORD_FAILURE
+        });
+      }
+      return dispatch({
+        type: types.VALIDATE_WALLET_PASSWORD_FAILURE
+      });
+    }, 10);
   };
 }
 
@@ -94,16 +173,15 @@ export function setWalletMode(walletMode) {
   };
 }
 
-function encrypt(msg, pass) {
+export function encrypt(data, pass, iterations = 4500) {
   const keySize = 256;
-  const iterations = 4500;
   const salt = CryptoJS.lib.WordArray.random(128 / 8);
   const key = CryptoJS.PBKDF2(pass, salt, {
     iterations,
     keySize: keySize / 4
   });
   const iv = CryptoJS.lib.WordArray.random(128 / 8);
-  const encrypted = CryptoJS.AES.encrypt(msg, key, {
+  const encrypted = CryptoJS.AES.encrypt(data, key, {
     iv,
     mode: CryptoJS.mode.CBC,
     padding: CryptoJS.pad.Pkcs7
@@ -111,12 +189,11 @@ function encrypt(msg, pass) {
   return salt.toString() + iv.toString() + encrypted.toString();
 }
 
-function decrypt(transitmessage, pass) {
+export function decrypt(data, pass, iterations = 4500) {
   const keySize = 256;
-  const iterations = 4500;
-  const salt = CryptoJS.enc.Hex.parse(transitmessage.substr(0, 32));
-  const iv = CryptoJS.enc.Hex.parse(transitmessage.substr(32, 32));
-  const encrypted = transitmessage.substring(64);
+  const salt = CryptoJS.enc.Hex.parse(data.substr(0, 32));
+  const iv = CryptoJS.enc.Hex.parse(data.substr(32, 32));
+  const encrypted = data.substring(64);
   const key = CryptoJS.PBKDF2(pass, salt, {
     iterations,
     keySize: keySize / 4
@@ -130,9 +207,12 @@ function decrypt(transitmessage, pass) {
 }
 
 export default {
+  decrypt,
+  encrypt,
   lockWallet,
   unlockWallet,
   removeWallet,
   setTemporaryKey,
-  setWalletKey
+  setWalletKey,
+  validateWalletPassword
 };

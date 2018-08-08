@@ -1,18 +1,37 @@
+import { get } from 'dot-prop-immutable';
+
 import * as types from '../actions/types';
 
 const initialState = {
   // If the active session has accepted the TT constitution
   acceptedConstitution: false,
+  // If the wallet has ackknowledged understanding the smart contract tool
+  acceptedContractInterface: false,
   // The loaded account
   account: '',
+  // The block explorer used
+  blockExplorer: 'bloks.io',
+  // List of contacts
+  contacts: [],
   // Custom tokens the wallet should be tracking
-  customTokens: ["eosio.token:TT"],
+  customTokens: [
+    // Always track the EOS token
+    ['eosio.token:TT'],
+  ],
+  // Default Idle Timeout
+  idleTimeout: 999999999,
   // Default language
-  lang: 'en-US',
+  lang: '',
   // The node to connect to
   node: '',
+  // Recent contracts the wallet has used
+  recentContracts: [],
+  // Recent referendum scopes the wallet has used
+  recentProposalsScopes: [],
   // Allows the UI to start with only a connected node
   skipImport: false,
+  // Allows users to go to link directly (without passing through DangerLink) when set to true
+  skipLinkModal: false,
   // Window State Management
   setupData: {},
   // Wallet Status
@@ -35,6 +54,26 @@ export default function settings(state = initialState, action) {
         account: '',
         walletInit: false,
         walletMode: 'hot'
+      });
+    }
+    case types.SYSTEM_GOVERNANCE_GET_PROPOSALS_SUCCESS: {
+      const recentProposalsScopes = [...state.recentProposalsScopes];
+      const scopeName = get(action, 'payload.scope');
+      if (!recentProposalsScopes.includes(scopeName)) {
+        recentProposalsScopes.unshift(scopeName);
+      }
+      return Object.assign({}, state, {
+        recentProposalsScopes: recentProposalsScopes.slice(0, 50)
+      });
+    }
+    case types.SYSTEM_GETABI_SUCCESS: {
+      const recentContracts = [...state.recentContracts];
+      const contractName = get(action, 'payload.contract.account_name');
+      if (!recentContracts.includes(contractName)) {
+        recentContracts.unshift(contractName);
+      }
+      return Object.assign({}, state, {
+        recentContracts: recentContracts.slice(0, 50)
       });
     }
     case types.SET_SETTING: {

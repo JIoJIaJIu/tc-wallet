@@ -21,7 +21,7 @@ export function setStake(account, netAmount, cpuAmount) {
 
     dispatch({ type: types.SYSTEM_STAKE_PENDING });
 
-    return eos(connection).transaction(tr => {
+    return eos(connection, true).transaction(tr => {
       if (increaseInStake.netAmount > 0 || increaseInStake.cpuAmount > 0) {
         tr.delegatebw(delegatebwParams(
           account.account_name,
@@ -43,8 +43,9 @@ export function setStake(account, netAmount, cpuAmount) {
       expireInSeconds: connection.expireInSeconds,
       sign: connection.sign
     }).then((tx) => {
-      dispatch(AccountActions.getAccount(account.account_name));
-
+      setTimeout(() => {
+        dispatch(AccountActions.getAccount(account.account_name));
+      }, 500);
       return dispatch({
         payload: { tx },
         type: types.SYSTEM_STAKE_SUCCESS

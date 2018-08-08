@@ -3,7 +3,6 @@
   "about_to_stake_to_net": "You are about to stake to Bandwidth: ",
   "about_to_unstake_from_cpu": "You are about to unstake from CPU: ",
   "about_to_unstake_from_net": "You are about to unstake from Bandwidth: ",
-  "amount_not_staked": "Available TT (Unstaked)",
   "confirm_stake": "Confirm",
   "cpu_staked": "TT staked in CPU",
   "eos_in_cpu_after": "TT in CPU after",
@@ -13,6 +12,7 @@
   "stake_form": "Staking Coins",
   "stake_modal_title": "Update Staked TT Amounts",
   "stake_success": "You have successfully staked additional TT.",
+  "amount_not_staked": "Available TT (Unstaked)",
   "stake_updated": "Your stake was updated successfully.",
   "staked_balances": "Staked Balances",
   "staked_data": "Stake Stats",
@@ -24,7 +24,7 @@
   "update_staked_net_amount": "Set TT staked in Bandwidth",
   "will_have_less_than_one_eos_staked": "You will have less than 1 TT staked to Bandwidth and/or CPU. That may prevent you from carrying out transactions when the network is busy.",
   "you_will_have": "You will have",
-  "about_to_unstake": "You are about to stake/unstake some coins, please note that all coins that were unstaked will have to be claimed in 72 hours.",
+  "about_to_unstake_tokens": "You are about to unstake some tokens, please note that all tokens that were unstaked will have to be claimed in 72 hours.",
   "have_already_unstaked": "You are currently unstaking ",
   "unstaking_will_be_reset": ". If you proceed to unstake to this new value, it will replace this previous request, and reset the 72 hour count down."
 }

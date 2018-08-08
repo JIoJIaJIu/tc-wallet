@@ -60,7 +60,7 @@ class GenerateKeysStep extends Component<Props> {
           Save your password, it cannot be restored.
         </p>
 
-        <Input value={privateKey} readOnly fluid />
+        <Input value={privateKey} placeholder="Generating..." readOnly fluid />
         <br />
         <Input value={confirmPrivateKey} onChange={this.onChange} placeholder="Confirm password" fluid />
 

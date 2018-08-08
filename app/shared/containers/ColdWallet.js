@@ -45,6 +45,7 @@ class ColdWalletContainer extends Component<Props> {
       history.push('/');
     }
   }
+
   continueSetup = () => {
     const {
       actions,
@@ -76,13 +77,14 @@ class ColdWalletContainer extends Component<Props> {
       activeItem
     } = this.state;
     let activeTab = <ColdWallet {...this.props} />;
+
     switch (activeItem) {
       case 'about': {
         activeTab = <About {...this.props} />;
         break;
       }
       case 'tools': {
-        activeTab = <Tools />;
+        activeTab = <Tools settings={settings} />;
         break;
       }
       default: {
@@ -97,6 +99,7 @@ class ColdWalletContainer extends Component<Props> {
           handleItemClick={this.handleItemClick}
           locked={(!keys.key)}
           settings={settings}
+          validate={validate}
           wallet={wallet}
         />
         <Segment
@@ -143,6 +146,7 @@ function mapStateToProps(state) {
     settings: state.settings,
     system: state.system,
     transaction: state.transaction,
+    validate: state.validate,
     wallet: state.wallet
   };
 }

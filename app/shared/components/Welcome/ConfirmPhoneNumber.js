@@ -8,6 +8,7 @@ import { translate } from 'react-i18next';
 import logo from '../../../renderer/basic/tc.png';
 import * as SettingsActions from '../../actions/settings';
 import * as WalletActions from '../../actions/wallet';
+import { withRouter } from 'react-router-dom';
 import { RingLoader } from 'react-spinners';
 
 
@@ -52,10 +53,11 @@ class ConfirmPhoneNumber extends Component<Props> {
         number: phoneNumber,
         passcode: smsCode
       });
-    } catch (e) {
-      console.log(1);
+
       setSetting('walletTemp', true);
       setTemporaryKey(localStorage.getItem('publicKey'));
+    } catch (e) {
+      console.error(e);
     }
   }
 
@@ -138,6 +140,16 @@ class ConfirmPhoneNumber extends Component<Props> {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    accounts: state.accounts,
+    keys: state.keys,
+    settings: state.settings,
+    validate: state.validate,
+    wallet: state.wallet
+  };
+}
+
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({
@@ -148,6 +160,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default compose(
+  withRouter,
   translate('ConfirmPhoneNumber'),
-  connect(mapDispatchToProps)
+  connect(mapStateToProps, mapDispatchToProps)
 )(ConfirmPhoneNumber);

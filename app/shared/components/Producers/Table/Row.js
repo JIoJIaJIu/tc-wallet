@@ -10,20 +10,25 @@ import ProducersVoteWeight from '../Vote/Weight';
 class ProducersTableRow extends Component<Props> {
   shouldComponentUpdate = (nextProps) =>
     !isEqual(this.props.producer.key, nextProps.producer.key)
-    || !isEqual(this.props.validUser, nextProps.validUser)
+    || !isEqual(this.props.isValidUser, nextProps.isValidUser)
     || !isEqual(this.props.isSelected, nextProps.isSelected);
 
   render() {
     const {
       addProducer,
+      getProducerInfo,
+      hasInfo,
       isSelected,
       producer,
       position,
+      isProxying,
+      isValidUser,
       removeProducer,
+      settings,
       t,
-      totalVoteWeight,
-      validUser
+      totalVoteWeight
     } = this.props;
+
     const epoch = 946684800000;
     const lastProduced = (producer.last_produced_block_time * 500) + epoch;
     const isActive = (Date.now() - lastProduced) < 1000;
@@ -43,16 +48,49 @@ class ProducersTableRow extends Component<Props> {
           singleLine
           textAlign="center"
         >
-          <Button
-            color={isSelected ? 'blue' : 'grey'}
-            disabled={!validUser}
-            icon={isSelected ? 'checkmark box' : 'minus square outline'}
-            onClick={
-              (isSelected)
-              ? () => removeProducer(producer.owner)
-              : () => addProducer(producer.owner)
-            }
-            size="small"
+          {(hasInfo)
+            ? (
+              <Button
+                color="purple"
+                icon="magnify"
+                onClick={() => getProducerInfo(producer.owner)}
+                size="small"
+              />
+            )
+            : (
+              <Popup
+                content={t('producer_json_unavailable_content')}
+                header={t('producer_json_unavailable_header')}
+                hoverable
+                inverted
+                position="left center"
+                trigger={(
+                  <Button
+                    icon="magnify"
+                    size="small"
+                  />
+                )}
+              />
+            )
+          }
+          <Popup
+            content={t('producer_vote_content')}
+            header={t('producer_vote_header', { producer: producer.owner })}
+            hoverable
+            position="right center"
+            trigger={(
+              <Button
+                color={isSelected ? 'blue' : 'grey'}
+                disabled={!isValidUser || isProxying}
+                icon={isSelected ? 'checkmark box' : 'minus square outline'}
+                onClick={
+                  (isSelected)
+                  ? () => removeProducer(producer.owner)
+                  : () => addProducer(producer.owner)
+                }
+                size="small"
+              />
+            )}
           />
         </Table.Cell>
         <Table.Cell
@@ -63,7 +101,7 @@ class ProducersTableRow extends Component<Props> {
         <Table.Cell
           singleLine
         >
-          <Header size="tiny">
+          <Header size="small">
             <span styles={{ fontFamily: '"Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace' }}>
               {producer.owner}
             </span>
@@ -71,6 +109,7 @@ class ProducersTableRow extends Component<Props> {
               <DangerLink
                 content={producer.url.substring(0, 30).replace(/(^\w+:|^)\/\//, '')}
                 link={producer.url}
+                settings={settings}
               />
             </Header.Subheader>
           </Header>

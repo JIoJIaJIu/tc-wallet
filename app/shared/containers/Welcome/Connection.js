@@ -113,6 +113,12 @@ class WelcomeConnectionContainer extends Component<Props> {
       settings,
       validate
     } = this.props;
+    let {
+      autoFocus
+    } = this.props;
+    if (autoFocus === undefined) {
+      autoFocus = true;
+    }
     const {
       node,
       sslConfirm
