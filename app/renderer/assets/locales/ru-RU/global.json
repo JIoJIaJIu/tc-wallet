@@ -80,5 +80,8 @@
   "global_transaction_view_is_expired": "Expired",
   "global_transaction_view_is_signed": "Signed Transaction",
   "global_transaction_view_is_unsigned": "Unsigned Transaction",
-  "global_transaction_view_status": "Transaction Status"
+  "global_transaction_view_status": "Transaction Status",
+  "verify": "Подтвердить",
+  "back": "Назад",
+  "send sms": "Отправить СМС"
 }

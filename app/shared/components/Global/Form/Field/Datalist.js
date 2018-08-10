@@ -19,7 +19,7 @@ class DataList extends React.Component {
     this.props.onSelectNode(this.props.options[0].value)
     this.setState({ 
       filteredOptions: this.props.options,
-      textValue: this.props.options[0].value
+      textValue: this.props.options[0].title
      });
   }
 
@@ -50,8 +50,8 @@ class DataList extends React.Component {
 
 
   handleClick(option) {
-    this.props.onSelectNode(option.value)
-    this.setState({textValue: option.value})
+    this.props.onSelectNode(option.value);
+    this.setState({ textValue: option.title });
     this.hideList();
   }
 
@@ -70,7 +70,7 @@ class DataList extends React.Component {
   render() {
 
       let displayList = this.state.filteredOptions.map((option) => {
-          return (<div className='datalist-node-option' data-id={option.id} key={`${option.value}`} onClick={()=>this.handleClick(option)}>{option.value}</div>)
+          return (<div className='datalist-node-option' data-id={option.id} key={`${option.value}`} onClick={()=>this.handleClick(option)}>{option.title}</div>)
       })
 
 

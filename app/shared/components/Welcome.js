@@ -154,13 +154,13 @@ class Welcome extends Component<Props> {
               )
                 ? (
                   <p>
-                    <Button
+                    {/* <Button
                       content={t('welcome:welcome_lookup_account_skip')}
                       icon="x"
                       onClick={this.skipImport}
                       size="small"
                       style={{ marginTop: '1em' }}
-                    />
+                    /> */}
                   </p>
                 )
                 : false

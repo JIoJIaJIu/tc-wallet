@@ -1,3 +1,4 @@
+import 'react-phone-number-input/style.css';
 import axios from 'axios';
 import compose from 'lodash/fp/compose';
 import { connect } from 'react-redux';
@@ -10,7 +11,10 @@ import * as SettingsActions from '../../actions/settings';
 import * as WalletActions from '../../actions/wallet';
 import { withRouter } from 'react-router-dom';
 import { RingLoader } from 'react-spinners';
-
+import PhoneInput from 'react-phone-number-input'
+import { parseNumber, formatNumber, isValidNumber } from 'libphonenumber-js'
+import Noty from 'noty';
+var NotificationSystem = require('react-notification-system');
 
 class ConfirmPhoneNumber extends Component<Props> {
   constructor() {
@@ -18,23 +22,41 @@ class ConfirmPhoneNumber extends Component<Props> {
     this.state = {
       phoneNumber: '',
       smsCode: '',
-      isSMSsent: false
-    };
+      isSMSsent: false,
+      isTouched: false
+    }
+  }
+
+  notificationSystem: null
+
+
+  componentDidMount() {
+    this.notificationSystem = this.refs.notificationSystem;
   }
 
   onChange = (event, { name, value }) => {
-    name === 'phoneNumber' ? this.setState({ isSMSsent: false }) : '';
+    name === 'phoneNumber' ? this.setState({ isSMSsent: false, isTouched: true }) : '';
     this.setState({
       [name]: value
     });
   }
 
-  sendSMS = () => {
+  sendSMS = async () => {
     this.setState({ isSMSsent: true });
     const { phoneNumber } = this.state;
-    axios.post('http://localhost:8000/api/pass-code/', {
-      number: phoneNumber
-    });
+    try {
+      await axios.post('http://localhost:8000/api/pass-code/', {
+        number: phoneNumber
+      });
+    } catch (e) {
+      this.notificationSystem.addNotification({
+        message: Object.values(e.response.data)[0][0],
+        level: 'error'
+      });
+      this.setState({
+        isSMSsent: false
+      });
+    }
   }
 
   signUp = async () => {
@@ -44,7 +66,6 @@ class ConfirmPhoneNumber extends Component<Props> {
       setSetting,
       setTemporaryKey
     } = actions;
-
     try {
       await axios.post('http://localhost:8000/api/account/', {
         account,
@@ -64,7 +85,7 @@ class ConfirmPhoneNumber extends Component<Props> {
 
   render() {
     const { t, backHandler } = this.props;
-    const { phoneNumber, smsCode, isSMSsent } = this.state;
+    const { phoneNumber, smsCode, isSMSsent, isTouched } = this.state;
 
     const Logo = (
       <Image style={{ textAlign: 'center', margin: '20px auto' }} src={logo} width="120" alt="Greymass" />
@@ -76,6 +97,7 @@ class ConfirmPhoneNumber extends Component<Props> {
         size="huge"
         stacked
       >
+        <NotificationSystem ref="notificationSystem" />
         Register
         {Logo}
         <p style={{ fontSize: '16px' }}>
@@ -87,9 +109,14 @@ class ConfirmPhoneNumber extends Component<Props> {
           options={{ phone: true, phoneRegionCode: 'RU' }}
           onChange={this.onChange}
         /> */}
-
-        <Input placeholder="Enter your phone number" name="phoneNumber" value={phoneNumber} onChange={this.onChange} fluid />
-        <br />
+        <PhoneInput
+          placeholder="Enter phone number"
+          value={phoneNumber}
+          onChange={value => this.onChange(null, { name: 'phoneNumber', value })}
+        />
+        {phoneNumber && !isValidNumber(phoneNumber) ? <p className="phoneNumber-error">Invalid phone number</p> : <br />}
+        {/* <Input placeholder="Enter your phone number" name="phoneNumber" value={phoneNumber} onChange={this.onChange} fluid /> */}
+        {/* { phoneNumber && isValidNumber(phoneNumber) ? <br /> : null } */}
         <Input placeholder="SMS Code" name="smsCode" value={smsCode} onChange={this.onChange} fluid />
 
         <Message
@@ -121,7 +148,7 @@ class ConfirmPhoneNumber extends Component<Props> {
           {isSMSsent ? (
             <Button
               content={t('verify')}
-              disabled={false}
+              disabled={!this.state.smsCode}
               onClick={this.signUp}
               size="small"
               style={{ marginTop: '1em' }}
@@ -129,7 +156,7 @@ class ConfirmPhoneNumber extends Component<Props> {
           ) : (
             <Button
               content={t('send sms')}
-              disabled={false}
+              disabled={!isValidNumber(phoneNumber || '')}
               onClick={this.sendSMS}
               size="small"
               style={{ marginTop: '1em' }}
@@ -162,6 +189,6 @@ function mapDispatchToProps(dispatch) {
 
 export default compose(
   withRouter,
-  translate('ConfirmPhoneNumber'),
+  translate('global'),
   connect(mapStateToProps, mapDispatchToProps)
 )(ConfirmPhoneNumber);

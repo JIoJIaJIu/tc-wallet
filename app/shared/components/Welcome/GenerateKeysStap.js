@@ -62,7 +62,7 @@ class GenerateKeysStep extends Component<Props> {
 
         <Input value={privateKey} placeholder="Generating..." readOnly fluid />
         <br />
-        <Input value={confirmPrivateKey} onChange={this.onChange} placeholder="Confirm password" fluid />
+        <Input value={confirmPrivateKey} onChange={this.onChange} placeholder="Confirm key" fluid />
 
         <Message
           color="red"

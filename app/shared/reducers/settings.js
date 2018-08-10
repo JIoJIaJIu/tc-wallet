@@ -16,7 +16,7 @@ const initialState = {
   // Custom tokens the wallet should be tracking
   customTokens: [
     // Always track the EOS token
-    ['eosio.token:TT'],
+    'eosio.token:TT',
   ],
   // Default Idle Timeout
   idleTimeout: 999999999,
