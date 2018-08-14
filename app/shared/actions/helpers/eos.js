@@ -2,7 +2,7 @@ import { decrypt } from '../wallet';
 
 const CryptoJS = require('crypto-js');
 const ecc = require('eosjs-ecc');
-const Eos = require('tcjs');
+const Eos = require('eosjs');
 
 export default function eos(connection, signing = false) {
   const decrypted = Object.assign({}, connection);

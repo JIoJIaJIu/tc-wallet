@@ -99,5 +99,9 @@
   "global_transaction_view_status": "Transaction Status",
   "verify": "Verify",
   "back": "Back",
-  "send sms": "Send SMS"
+  "send sms": "Send SMS",
+  "continue": "Continue",
+  "wrong_account_name": "Account name is busy or not valid",
+  "allowed_symbols_message_1": "Only next symbols are allowed to use in account names:",
+  "allowed_symbols_message_2": "An account name cannot exceed 12 symbols."
 }

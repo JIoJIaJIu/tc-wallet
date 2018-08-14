@@ -83,5 +83,9 @@
   "global_transaction_view_status": "Transaction Status",
   "verify": "Подтвердить",
   "back": "Назад",
-  "send sms": "Отправить СМС"
+  "send sms": "Отправить СМС",
+  "continue": "Продолжить",
+  "wrong_account_name": "Имя аккаунта занято, или невалидно",
+  "allowed_symbols_message_1": "К регистрации допускаются имена аккаунтов, содержащие только следующие символы:",
+  "allowed_symbols_message_2": "Имя аккаунта не должно превышать 12 символов."
 }

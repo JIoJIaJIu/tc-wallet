@@ -78,9 +78,10 @@ class BasicVoterContainer extends Component<Props> {
         } else {
           getCurrencyStats();
           getBlockExplorers();
-          forEach(settings.customTokens, ([token]) => {
-            console.log(token, 'token');
+          forEach(settings.customTokens, (token) => {
             const [contract, symbol] = token.split(':');
+            console.log(token, 'token');
+            console.log(contract, symbol, 'contract, symbol');
             getCurrencyStats(contract, symbol.toUpperCase());
           });
         }

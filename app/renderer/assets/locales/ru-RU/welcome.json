@@ -9,7 +9,7 @@
   "welcome_account_select_title": "Выбор Учётной Записи",
   "welcome_cancel_coldwallet": "Cancel Cold Wallet",
   "welcome_compare_key": "Сравнить ключи",
-  "welcome_connect_server": "Подключение к серверу",
+  "welcome_connect_server": "Подключиться",
   "welcome_created_by": "Создано",
   "welcome_instructions_1": "Для начала, приложение должно подключиться к одному из узлов сети TravelChain",
   "welcome_enter_account": "Confirm Account",

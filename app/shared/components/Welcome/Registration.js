@@ -4,7 +4,7 @@ import { Button, Container, Segment, Message, Image, Input, Form } from 'semanti
 import { translate } from 'react-i18next';
 import logo from '../../../renderer/basic/tc.png';
 import axios from 'axios';
-import ecc from 'tcjs-ecc'
+import ecc from 'eosjs-ecc';
 import GenerateKeysStep from './GenerateKeysStap';
 import ConfirmPhoneNumber from './ConfirmPhoneNumber';
 
@@ -89,12 +89,12 @@ class RegistrationPage extends Component<Props> {
         className="registration-page__info-message"
         content={(
           <p style={{ fontSize: '15px', textAlign: 'center' }}>
-            К регистрации допускаются имена аккаунтов, содержащие только следующие символы:
+            { t('allowed_symbols_message_1') }
             <br />
             <strong>12345.abcdefghijklmnopqrstuvwxyz</strong>
             <br />
             <br />
-            Имя аккаунта не должно превышать 12 символов.
+            { t('allowed_symbols_message_2') }
           </p>
         )}
         info
@@ -144,7 +144,7 @@ class RegistrationPage extends Component<Props> {
 
         {!isValid && isInputDirty
           ?
-            <p className="input-error">Account name is busy or not valid.</p>
+            <p className="input-error">{t('wrong_account_name')}</p>
           :
             null
         }
@@ -174,4 +174,4 @@ class RegistrationPage extends Component<Props> {
   }
 }
 
-export default translate('registration')(RegistrationPage);
+export default translate('global')(RegistrationPage);

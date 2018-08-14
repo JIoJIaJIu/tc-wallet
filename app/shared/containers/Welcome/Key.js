@@ -14,7 +14,7 @@ import * as ValidateActions from '../../actions/validate';
 import * as WalletActions from '../../actions/wallet';
 import * as WalletsActions from '../../actions/wallets';
 
-const ecc = require('tcjs-ecc');
+const ecc = require('eosjs-ecc');
 
 type Props = {
   accounts: {},

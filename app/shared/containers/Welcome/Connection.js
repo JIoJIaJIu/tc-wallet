@@ -195,7 +195,9 @@ class WelcomeConnectionContainer extends Component<Props> {
     }
     // safeish true and ssl or non-ssl confirmed
     const disabled = !(this.isSafeish(node) && (sslConfirm || sslEnabled));
-    const options = [{ id: 1, title: 'eost.travelchain.io', value: 'https://eost.travelchain.io/v1/wallet' }];
+    const options = [
+      { id: 1, title: 'eost.travelchain.io', value: 'https://eost.travelchain.io/v1/wallet' }
+    ];
     return (
       <div>
         <Form>

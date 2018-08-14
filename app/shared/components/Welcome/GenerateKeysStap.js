@@ -1,4 +1,4 @@
-import ecc from 'tcjs-ecc';
+import ecc from 'eosjs-ecc';
 import React, { Component } from 'react';
 import { Button, Segment, Message, Image, Input } from 'semantic-ui-react';
 import { translate } from 'react-i18next';

@@ -3,7 +3,7 @@ import * as types from './types';
 import * as chain from './chain';
 import eos from './helpers/eos';
 
-const ecc = require('tcjs-ecc');
+const ecc = require('eosjs-ecc');
 
 export function validateAccount(account) {
   return (dispatch: () => void, getState) => {

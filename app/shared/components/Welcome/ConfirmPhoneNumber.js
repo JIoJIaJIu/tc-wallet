@@ -45,7 +45,7 @@ class ConfirmPhoneNumber extends Component<Props> {
     this.setState({ isSMSsent: true });
     const { phoneNumber } = this.state;
     try {
-      await axios.post('http://localhost:8000/api/pass-code/', {
+      await axios.post('http:///localhost:8000/api/pass-code/', {
         number: phoneNumber
       });
     } catch (e) {
