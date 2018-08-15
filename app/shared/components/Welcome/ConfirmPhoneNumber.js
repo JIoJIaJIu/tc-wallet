@@ -21,7 +21,7 @@ class ConfirmPhoneNumber extends Component<Props> {
     super();
     this.state = {
       phoneNumber: '',
-      smsCode: '',
+      smsCode: undefined,
       isSMSsent: false,
       isTouched: false
     }
@@ -45,7 +45,7 @@ class ConfirmPhoneNumber extends Component<Props> {
     this.setState({ isSMSsent: true });
     const { phoneNumber } = this.state;
     try {
-      await axios.post('http:///localhost:8000/api/pass-code/', {
+      await axios.post('https:///f.travelchain.io/api/pass-code/', {
         number: phoneNumber
       });
     } catch (e) {
@@ -53,9 +53,7 @@ class ConfirmPhoneNumber extends Component<Props> {
         message: Object.values(e.response.data)[0][0],
         level: 'error'
       });
-      this.setState({
-        isSMSsent: false
-      });
+     
     }
   }
 
@@ -67,7 +65,7 @@ class ConfirmPhoneNumber extends Component<Props> {
       setTemporaryKey
     } = actions;
     try {
-      await axios.post('http://localhost:8000/api/account/', {
+      await axios.post('https://f.travelchain.io/api/account/', {
         account,
         owner_pub: localStorage.getItem('publicKey'),
         active_pub: localStorage.getItem('publicKey'),
@@ -126,11 +124,7 @@ class ConfirmPhoneNumber extends Component<Props> {
           className="registration-page__info-message warning"
           content={(
             <p style={{ fontSize: '15px', textAlign: 'center' }}>
-              Каждый новый аккаунт в сети TravelChain
-              <br />
-              получает 8 кб оперативной памяти для совершения
-              <br />
-              операций.
+              {t('welcome:welcome_every_account_get')}
             </p>
           )}
           info
@@ -146,6 +140,14 @@ class ConfirmPhoneNumber extends Component<Props> {
           />
 
           {isSMSsent ? (
+            <div>
+            <Button
+              content={t('send sms')}
+              disabled={!isValidNumber(phoneNumber || '')}
+              onClick={this.sendSMS}
+              size="small"
+              style={{ marginTop: '1em' }}></Button>
+
             <Button
               content={t('verify')}
               disabled={!this.state.smsCode}
@@ -153,6 +155,7 @@ class ConfirmPhoneNumber extends Component<Props> {
               size="small"
               style={{ marginTop: '1em' }}
             />
+            </div>
           ) : (
             <Button
               content={t('send sms')}

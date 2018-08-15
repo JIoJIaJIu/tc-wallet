@@ -375,3 +375,7 @@ border: none;
 {
 	border-bottom : none;
 }
+
+.ui.grid{
+  margin: 0px;
+}

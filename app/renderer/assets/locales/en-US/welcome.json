@@ -62,5 +62,6 @@
   "welcome_ssl_warning_confirm": "I understand the risks - connect anyways.",
   "welcome_ssl_warning_content": "Using a non-HTTPS API may risk your privacy.",
   "welcome_ssl_warning_title": "Non-HTTPS API",
-  "welcome_use_coldwallet": "Setup Cold Wallet"
+  "welcome_use_coldwallet": "Setup Cold Wallet",
+  "welcome_every_account_get": "Every new account on the TravelChain network receives 8 kb of RAM to perform operations."
 }

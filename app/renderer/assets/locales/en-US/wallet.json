@@ -44,6 +44,7 @@
   "wallet_status_resources_ram_available_title": "RAM",
   "wallet_status_resources_ram_available_desc": "",
   "wallet_status_resources_total": "Total",
+  "wallet_status_tab_account_history" :"History",
   "wallet_status_resources_staked": "Staked",
   "wallet_status_resources_delegated": "Delegated",
   "wallet_status_resources_usage": "Usage",

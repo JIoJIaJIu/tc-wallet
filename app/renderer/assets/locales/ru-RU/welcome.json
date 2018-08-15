@@ -62,5 +62,7 @@
   "welcome_ssl_warning_confirm": "Я понимаю риски - подключайтесь в любом случае.",
   "welcome_ssl_warning_content": "Использование API без HTTPS, может угрожать вашей конфиденциальности.",
   "welcome_ssl_warning_title": "API без HTTPS",
-  "welcome_use_coldwallet": "Setup Cold Wallet"
+  "welcome_use_coldwallet": "Setup Cold Wallet",
+  "welcome_every_account_get": "Каждый новый аккаунт в сети TravelChain получает 8 кб оперативной памяти для совершения операций."
+
 }

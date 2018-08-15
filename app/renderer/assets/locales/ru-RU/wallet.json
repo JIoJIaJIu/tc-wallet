@@ -92,6 +92,6 @@
   "wallet_status_liquid": "Liquid",
   "wallet_status_ram_amount": "RAM Amount",
   "wallet_status_resources_being_unstaked": "Unstaking",
-  "wallet_status_tab_account_history": "History",
+  "wallet_status_tab_account_history": "История",
   "wallet_status_total_balance": "Total"
 }
