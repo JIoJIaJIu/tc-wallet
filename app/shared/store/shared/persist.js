@@ -44,13 +44,13 @@ const migrations = {
       !newSettings.customTokens
       || !newSettings.customTokens.length
     ) {
-      newSettings.customTokens = ['eosio.token:EOS'];
+      newSettings.customTokens = ['eosio.token:TT'];
     }
     if (
       newSettings.customTokens
-      && newSettings.customTokens.indexOf('eosio.token:EOS') === -1
+      && newSettings.customTokens.indexOf('eosio.token:TT') === -1
     ) {
-      newSettings.customTokens.push('eosio.token:EOS');
+      newSettings.customTokens.push('eosio.token:TT');
     }
     return Object.assign({}, state, {
       settings: newSettings

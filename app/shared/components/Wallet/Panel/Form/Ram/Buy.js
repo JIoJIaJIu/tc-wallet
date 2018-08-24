@@ -113,7 +113,7 @@ class WalletPanelFormRamBuy extends Component<Props> {
       return 'ram_has_to_be_over_minimum_amount';
     }
 
-    if (!balance.EOS || Decimal(balance.EOS).lessThan(priceOfRam)) {
+    if (!balance.TT || Decimal(balance.TT).lessThan(priceOfRam)) {
       return 'not_enough_balance';
     }
 
@@ -231,7 +231,7 @@ class WalletPanelFormRamBuy extends Component<Props> {
                   </Grid.Column>
                   <Grid.Column width={8}>
                     <WalletPanelFormRamStats
-                      EOSbalance={balance.EOS}
+                      EOSbalance={balance.TT}
                       ramQuota={ramQuota}
                       ramUsage={ramUsage}
                     />
@@ -265,7 +265,7 @@ class WalletPanelFormRamBuy extends Component<Props> {
               buying
               ramAmount={ramToBuy}
               newRamAmount={ramQuota + Number(ramToBuy)}
-              EOSbalance={balance.EOS}
+              EOSbalance={balance.TT}
               onBack={this.onBack}
               onConfirm={this.onConfirm}
               priceOfRam={priceOfRam}

@@ -56,7 +56,7 @@ export function getProducers(previous = false) {
       let tokensToProducersForVotes = false;
       const { contract } = globals;
       if (contract && contract['eosio.token']) {
-        const supply = parseFloat(contract['eosio.token'].EOS.supply);
+        const supply = parseFloat(contract['eosio.token'].TT.supply);
         // yearly inflation
         const inflation = 0.04879;
         // Tokens per year

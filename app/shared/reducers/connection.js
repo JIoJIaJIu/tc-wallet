@@ -4,8 +4,8 @@ import * as types from '../actions/types';
 
 const initialState = {
   authorization: undefined,
-  chain: 'eos-mainnet',
-  chainId: 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',
+  chain: 'travelchain',
+  chainId: '0443d062bb782b32bdc07a65273e1696c9a28749c047124927c7160897cacd28',
   broadcast: true,
   expireInSeconds: 120,
   forceActionDataHex: false,
@@ -13,7 +13,7 @@ const initialState = {
 };
 
 const blockchains = {
-  aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906: 'eos-mainnet'
+  '0443d062bb782b32bdc07a65273e1696c9a28749c047124927c7160897cacd28': 'travelchain'
 };
 
 export default function connection(state = initialState, action) {

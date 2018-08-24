@@ -227,7 +227,7 @@ class WalletPanelFormRamSell extends Component<Props> {
                   </Grid.Column>
                   <Grid.Column width={8}>
                     <WalletPanelFormRamStats
-                      EOSbalance={balances[settings.account].EOS}
+                      EOSbalance={balances[settings.account].TT}
                       ramQuota={ramQuota}
                       ramUsage={ramUsage}
                     />
